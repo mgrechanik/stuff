@@ -29,30 +29,55 @@
     * Также подойдет он для организации хранения **системы тегов** (если они организованы иерархически)	
 	* Функционал CRUD страниц обеспечивает возможность указания/изменения позиции узла в дереве на любую допустимую
 	* Дальнейшая работа с таким деревом предполагает использование возможностей [Materialized path](https://github.com/mgrechanik/yii2-materialized-path) расширения
+	* Индексная страница просмотра каталога предполагает вывод **всего** каталога, без пагинаций и фильтров
 
 ---
 
 ## Демо <span id="demo"></span>
 
-В результате нашей работы у нас получится такой функционал:
+Функционал backend части будет выглядеть так:
 ![получившийся функционал каталога](https://raw.githubusercontent.com/mgrechanik/yii2-materialized-path/master/docs/images/catalog.png "Функционал каталога")
 	
 ---
     
 ## Установка <span id="installing"></span>
 
-Установка через composer:
+#### Установка через composer:
 
 Выполните
 ```
-composer require --prefer-dist mgrechanik/yii2-universal-module-sceleton
+composer require --prefer-dist mgrechanik/yii2-catalog
 ```
 
 или добавьте
 ```
-"mgrechanik/yii2-universal-module-sceleton" : "^1.0"
+"mgrechanik/yii2-catalog" : "~1.0.0"
 ```
 в  `require` секцию вашего `composer.json` файла.
+
+#### Если вам не требуются дополнительные поля для Active Record модели ([подробнее](#AAAAAAA)), то таблицу для каталога
+вы можете создать выполнив:
+
+```
+php yii migrate --migrationPath=@vendor/mgrechanik/yii2-catalog/src/console/migrations
+```
+
+#### Подключение модуля
+
+Т.к. ,как говорилось [выше](#goal), данный модуль следует структуре универсального модуля и предоставляет при этом
+только страницы backend-а, то при его подключении укажите следующий режим (mode)
+```
+    'modules' => [
+        'catalog' => [
+            'class' => 'mgrechanik\yii2catalog\Module',
+            'mode' => 'backend',
+            // Другие настройки модуля
+        ],
+		// ...
+    ],
+```
+
+Все, при переходе по адресу ```/catalog``` вы увидите весь ваш каталог.
 
 ---
 
