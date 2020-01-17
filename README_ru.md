@@ -312,5 +312,9 @@ return [
       SomeFrontendModel.php	  
     SomeCommonModel.php  
 ```
-* Т.к. для пользовательского интерфейса мы в модуле уже создали подпапку ```ui/```, то **формы** и **виджеты**
-следует располагать там
+
+
+
+
+
+yii migrate --migrationPath=@vendor/mgrechanik/yii2-catalog/src/console/migrations
