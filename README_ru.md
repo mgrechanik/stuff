@@ -5,13 +5,13 @@
 ## Содержание
 
 * [Цель](#goal)
-* [Цель](#demo)
+* [Демо](#demo)
 * [Установка](#installing)
-* [Суть идеи](#gist)
-* [Использование](#using)
-* [Настройка модуля](#settings)
-* [Пример подключения на *Basic* шаблоне](#example-basic)
-* [Рецепты](#recipe)
+* [Дефолтная AR модель каталога данного расширения](#defaultar)
+* [Использование своей AR модели](#using)
+* [Настройки модуля](#settings)
+* [Пример вывода каталога на frontend](#example-basic)
+
 
 
 ---
@@ -55,7 +55,9 @@ composer require --prefer-dist mgrechanik/yii2-catalog
 ```
 в  `require` секцию вашего `composer.json` файла.
 
-#### Если вам не требуются дополнительные поля для Active Record модели ([подробнее](#AAAAAAA)), то таблицу для каталога
+#### Миграции
+
+Если вам не требуются дополнительные поля для Active Record модели ([подробнее](#AAAAAAA)), то таблицу для каталога
 вы можете создать выполнив:
 
 ```
@@ -65,7 +67,7 @@ php yii migrate --migrationPath=@vendor/mgrechanik/yii2-catalog/src/console/migr
 #### Подключение модуля
 
 Т.к. ,как говорилось [выше](#goal), данный модуль следует структуре универсального модуля и предоставляет при этом
-только страницы backend-а, то при его подключении укажите следующий режим (mode)
+только страницы backend-а, то при его подключении укажите следующий режим (mode):
 ```
     'modules' => [
         'catalog' => [
@@ -81,7 +83,7 @@ php yii migrate --migrationPath=@vendor/mgrechanik/yii2-catalog/src/console/migr
 
 ---
 
-## Суть идеи  <span id="gist"></span>    
+## Суть идеи  <span id="defaultar"></span>    
 
 * По умолчанию в Yii2 модулях контроллеры ищутся автоматически в ```$controllerNamespace```
 * Мы намеренно не используем эту функцию, а задаем все контроллеры через ```$controllerMap``` модуля
