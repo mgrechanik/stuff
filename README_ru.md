@@ -64,7 +64,7 @@ composer require --prefer-dist mgrechanik/yii2-catalog
 php yii migrate --migrationPath=@vendor/mgrechanik/yii2-catalog/src/console/migrations
 ```
 
-#### Подключение модуля
+#### Подключение модуля  <span id="setup"></span>
 
 Как говорилось [выше](#goal), данный модуль следует структуре универсального модуля и предоставляет при этом
 только страницы backend-а, то при его подключении укажите следующий режим (mode):
@@ -113,6 +113,8 @@ php yii migrate --migrationPath=@vendor/mgrechanik/yii2-catalog/src/console/migr
 
 3) Укажите данному модулю использовать этот класс модели , через его св-во ```catalogModelClass```
 
+4) Если у вашей модели нет имени ```name``` то настройте свойство модуля - [```indentedNameCreatorCallback```](#indented-name)
+
 #### B) Настройка своей модели формы <span id="custom-ar-b"></span>
 
 AR модель и форма у нас не смешаны, поэтому действия похожие на **A)** должны быть произведены и над моделью формы.
@@ -122,9 +124,9 @@ AR модель и форма у нас не смешаны, поэтому де
 
 2) Укажите данному модулю использовать этот класс модели формы, через его св-во ```catalogFormModelClass```
 
-#### C) Настройка вьюх <span id="custom-ar-c"></span>
+#### C) Настройка views <span id="custom-ar-c"></span>
 
-Данный модуль имеет возможность [настроить какие вьюхи использовать](#потом).
+Данный модуль имеет возможность [настроить какие вьюхи использовать](#setup-views).
 
 Вот те из них, которые несут дополнительную информацию, скопируйте, измените под вашу модель, и укажите модулю.
 
@@ -134,97 +136,28 @@ AR модель и форма у нас не смешаны, поэтому де
 
 [Подключяя](#setup) модуль в приложение мы можем воспользоваться следующими его свойствами:
 
-#### ```$mode``` - режим работы модуля
-Обязательное свойство для установки. [Подробнее](#mode)
+#### ```$catalogModelClass``` - Какой класс AR модели каталога использовать
 
-#### ```$backendLayout``` - layout для backend контроллеров
-Указывается ```layout```, устанавливаемый модулю, когда обращение идет к **backend** контроллеру.  
-Полезно для *Basic* шаблона приложения.
+#### ```$catalogFormModelClass``` - Какой класс модели формы использовать
 
-#### ```$frontendControllers``` - карта frontend контроллеров
-[Подробнее](#fcontroller)
+#### ```$indentedNameCreatorCallback``` - Callback который сформирует название пункта каталога на странице всего
+каталога с учетом отступа, чтобы отображалось как дерево <span id="intended-name">
 
-#### ```$backendControllers``` - карта backend контроллеров
-[Подробнее](#bcontroller)
+#### ```$catalogIndexView```, ```$catalogCreateView```, ```$catalogUpdateView```, ```$catalogFormView```, ```$catalogViewView``` 
+- указывают соответствующие **views**, которые модуль будет использовать. 
+Формат смотрите в [документации](https://www.yiiframework.com/doc/api/2.0/yii-base-view#render()-detail). <span id="setup-views"></span>
 
-#### ```$controllerMapAdjustCallback``` - callback для финальной настройки карты контроллеров
+#### ```$redirectToIndexAfterCreate``` - Редиректить ли на страницу каталога после создания нового элемента. 
+```True``` по умолчанию. При ```false``` будет редиректить на страницу просмотра элемента каталога.
 
-После того как карта контроллеров модуля сгенерирована, ее можно тонко настроить этой функцией, 
-ее сигнатура: ```function($map) { ...; return $map; }```
+#### ```$redirectToIndexAfterUpdate``` - Аналогично предыдущему пункту по для задачи редактирования..
 
-#### ```$backendControllerConfig``` - настройки **backend** контроллеров
-Когда модуль [создает](#mknows) **backend** контроллер он перед работой может настроить его данными свойствами.
+#### ```$validateCatalogModel``` - Валидировать ли модель каталога перед сохранением. 
+По умолчанию ```false``` когда считается что из формы приходят уже валидные данные, ею проверенные.
 
-Удобно, например, чтобы через поведение закрыть доступ к таким контроллерам через фильтры доступа.
+#### ```$creatingSuccessMessage```, ```$updatingSuccessMessage```, ```$deletingSuccessMessage``` - тексты flash сообщений.
+Если их менять, то не забудьте обеспечить их переводы в источнике ```yii2catalog```
 
-[Пример использования](#example-basic). 
-
-#### ```$frontendControllerConfig``` - настройки **frontend** контроллеров
-По аналогии с ```$backendControllerConfig```
-
----
-
-## Пример подключения на *Basic* шаблоне <span id="example-basic"></span>
-
-Предположим что у нас имеется два таких наших модуля - ```example``` и ```omega```.  
-Для их подключения вот пример рабочих конфигов:
-
-**config/params.php:**
-```php
-return [
-    'backendLayout' => '//lte/main',
-    'backendControllerConfig' => [
-        'as backendaccess' => [
-            'class' => \yii\filters\AccessControl::class,
-            'rules' => [
-                [
-                    'allow' => true,
-                    'ips' => ['54.54.22.44'],
-                    'matchCallback' => function ($rule, $action){
-                        $user = \Yii::$app->user;
-                        return !$user->isGuest &&
-                            ($user->id == 1);
-                },
-                ]
-            ],
-        ],
-    ],	
-  
-];
-```
-В данном примере мы разрешили доступ "в админку" только одному указанному пользователю ```(id==1)```, плюс ограничиваем по ```ip```.
-
-
-**config/web.php:**
-```php
-    'components' => [
-	//...
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-                'admin/<module:(example|omega)>-<controllersuffix>/<action:\w*>' =>
-                    '<module>/admin-<controllersuffix>/<action>',
-                'admin/<module:(example|omega)>-<controllersuffix>' =>
-                    '<module>/admin-<controllersuffix>',
-            ],
-        ],	
-    ],
-    'modules' => [
-        'example' => [
-            'class' => 'modules\example\Module',
-            'mode' => 'backend and frontend',
-            'backendLayout' => $params['backendLayout'],
-            'backendControllerConfig' => $params['backendControllerConfig'],
-        ],
-        'omega' => [
-            'class' => 'modules\username1\omega\Module',
-            'mode' => 'backend and frontend',
-            'backendLayout' => $params['backendLayout'],
-            'backendControllerConfig' => $params['backendControllerConfig'],
-        ],        
-    ], 
-```
 
 ---
 
