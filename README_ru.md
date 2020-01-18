@@ -136,9 +136,11 @@ AR модель и форма у нас не смешаны, поэтому де
 
 [Подключяя](#setup) модуль в приложение мы можем воспользоваться следующими его свойствами:
 
-#### ```$catalogModelClass``` - Какой класс AR модели каталога использовать
+#### ```$catalogModelClass``` 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Какой класс AR модели каталога использовать
 
-#### ```$catalogFormModelClass``` - Какой класс модели формы использовать
+#### ```$catalogFormModelClass``` 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Какой класс модели формы использовать
 
 #### ```$indentedNameCreatorCallback``` <span id="intended-name">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Callback который сформирует название пункта каталога на странице всего
@@ -148,16 +150,19 @@ AR модель и форма у нас не смешаны, поэтому де
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- указывают соответствующие **views**, которые модуль будет использовать. 
 Формат смотрите в [документации](https://www.yiiframework.com/doc/api/2.0/yii-base-view#render()-detail). <span id="setup-views"></span>
 
-#### ```$redirectToIndexAfterCreate``` - Редиректить ли на страницу каталога после создания нового элемента. 
+#### ```$redirectToIndexAfterCreate``` 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Редиректить ли на страницу каталога после создания нового элемента.  
 ```True``` по умолчанию. При ```false``` будет редиректить на страницу просмотра элемента каталога.
 
-#### ```$redirectToIndexAfterUpdate``` - Аналогично предыдущему пункту по для задачи редактирования..
+#### ```$redirectToIndexAfterUpdate``` 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Аналогично предыдущему пункту по для задачи редактирования..
 
-#### ```$validateCatalogModel``` - Валидировать ли модель каталога перед сохранением. 
+#### ```$validateCatalogModel``` 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Валидировать ли модель каталога перед сохранением.  
 По умолчанию ```false``` когда считается что из формы приходят уже валидные данные, ею проверенные.
 
 #### ```$creatingSuccessMessage```, ```$updatingSuccessMessage```, ```$deletingSuccessMessage``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- тексты flash сообщений.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- тексты flash сообщений.  
 Если их менять, то не забудьте обеспечить их переводы в источнике ```yii2catalog```
 
 
