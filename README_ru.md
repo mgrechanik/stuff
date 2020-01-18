@@ -140,8 +140,9 @@ AR модель и форма у нас не смешаны, поэтому де
 
 #### ```$catalogFormModelClass``` - Какой класс модели формы использовать
 
-#### ```$indentedNameCreatorCallback``` - Callback который сформирует название пункта каталога на странице всего
-каталога с учетом отступа, чтобы отображалось как дерево <span id="intended-name">
+#### ```$indentedNameCreatorCallback``` <span id="intended-name">
+- Callback который сформирует название пункта каталога на странице всего
+каталога с учетом отступа, чтобы отображалось как дерево 
 
 #### ```$catalogIndexView```, ```$catalogCreateView```, ```$catalogUpdateView```, ```$catalogFormView```, ```$catalogViewView``` - указывают 
 соответствующие **views**, которые модуль будет использовать. 
