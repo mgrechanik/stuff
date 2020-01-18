@@ -143,8 +143,8 @@ AR модель и форма у нас не смешаны, поэтому де
 #### ```$indentedNameCreatorCallback``` - Callback который сформирует название пункта каталога на странице всего
 каталога с учетом отступа, чтобы отображалось как дерево <span id="intended-name">
 
-#### ```$catalogIndexView```, ```$catalogCreateView```, ```$catalogUpdateView```, ```$catalogFormView```, ```$catalogViewView``` 
-- указывают соответствующие **views**, которые модуль будет использовать. 
+#### ```$catalogIndexView```, ```$catalogCreateView```, ```$catalogUpdateView```, ```$catalogFormView```, ```$catalogViewView``` - указывают 
+соответствующие **views**, которые модуль будет использовать. 
 Формат смотрите в [документации](https://www.yiiframework.com/doc/api/2.0/yii-base-view#render()-detail). <span id="setup-views"></span>
 
 #### ```$redirectToIndexAfterCreate``` - Редиректить ли на страницу каталога после создания нового элемента. 
