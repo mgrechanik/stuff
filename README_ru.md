@@ -144,8 +144,8 @@ AR модель и форма у нас не смешаны, поэтому де
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Callback который сформирует название пункта каталога на странице всего
 каталога с учетом отступа, чтобы отображалось как дерево 
 
-#### ```$catalogIndexView```, ```$catalogCreateView```, ```$catalogUpdateView```, ```$catalogFormView```, ```$catalogViewView``` - указывают 
-соответствующие **views**, которые модуль будет использовать. 
+#### ```$catalogIndexView```, ```$catalogCreateView```, ```$catalogUpdateView```, ```$catalogFormView```, ```$catalogViewView``` 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- указывают соответствующие **views**, которые модуль будет использовать. 
 Формат смотрите в [документации](https://www.yiiframework.com/doc/api/2.0/yii-base-view#render()-detail). <span id="setup-views"></span>
 
 #### ```$redirectToIndexAfterCreate``` - Редиректить ли на страницу каталога после создания нового элемента. 
@@ -156,7 +156,8 @@ AR модель и форма у нас не смешаны, поэтому де
 #### ```$validateCatalogModel``` - Валидировать ли модель каталога перед сохранением. 
 По умолчанию ```false``` когда считается что из формы приходят уже валидные данные, ею проверенные.
 
-#### ```$creatingSuccessMessage```, ```$updatingSuccessMessage```, ```$deletingSuccessMessage``` - тексты flash сообщений.
+#### ```$creatingSuccessMessage```, ```$updatingSuccessMessage```, ```$deletingSuccessMessage``` 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- тексты flash сообщений.
 Если их менять, то не забудьте обеспечить их переводы в источнике ```yii2catalog```
 
 
