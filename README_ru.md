@@ -10,7 +10,7 @@
 * [Дефолтная AR модель каталога данного расширения](#default-ar)
 * [Использование своей AR модели](#custom-ar)
 * [Настройки модуля](#settings)
-* [Пример вывода каталога на frontend](#example-basic)
+* [Пример вывода каталога на frontend](#frontend-output)
 
 
 
@@ -75,7 +75,7 @@ php yii migrate --migrationPath=@vendor/mgrechanik/yii2-catalog/src/console/migr
             'mode' => 'backend',
             // Другие настройки модуля
         ],
-		// ...
+        // ...
     ],
 ```
 
@@ -161,84 +161,36 @@ AR модель и форма у нас не смешаны, поэтому де
 
 ---
 
-## Рецепты <span id="recipe"></span>
+## Пример вывода каталога на frontend <span id="frontend-output"></span>
 
-#### Делаем чтобы все админские адреса начинались с ```/admin```  <span id="recipe-admin-url"></span>
-Рассмотрим *Basic* приложение, к которому мы подключили два наших модуля:
+Если вам теперь нужно это дерево каталога вывести в шаблон, просто выполните:
 ```php
-    'modules' => [
-        'example' => [
-            ...
-        ],
-        'omega' => [
-            ...
-        ],  
+use mgrechanik\yiimaterializedpath\ServiceInterface;
+use mgrechanik\yii2catalog\models\Catalog;
+use mgrechanik\yiimaterializedpath\widgets\TreeToListWidget;
+
+// получаем сервис управления деревьями
+$service = \Yii::createObject(ServiceInterface::class);
+// Получаем элемент относительно которого строим дерево.
+// В данном случае это корневой элемент
+$root = $service->getRoot(Catalog::class);
+// Строим дерево из потомков корневого узла
+$tree = $service->buildDescendantsTree($root);
+// Выводим на странице
+print TreeToListWidget::widget(['tree' => $tree]);
 ```
-Если мы следовали [совету](#bcontroller) насчет админских контроллеров, то все они именуются по шаблону ```Admin...Controller```.  
-Соответственно адреса к ним будут вида ```example/admin-default``` и ```omega/admin-default```.  
-Мы же хотим чтобы все админские адреса начинались с ```admin/```.
+И получим следующее дерево:
+<ul>
+<li>Laptops &amp; PC<ul>
+<li>Laptops</li>
+<li>PC</li>
+</ul></li>
+<li>Phones &amp; Accessories<ul>
+<li>Smartphones<ul>
+<li>Android</li>
+<li>iOS</li>
+</ul></li>
+<li>Batteries</li>
+</ul></li>
+</ul>
 
-Это легко достигается следующими двумя правилами вашего ```urlManager```:
-```php
-	'urlManager' => [
-		'enablePrettyUrl' => true,
-		'showScriptName' => false,
-		'rules' => [
-			'admin/<module:(example|omega)>-<controllersuffix>/<action:\w*>' =>
-				'<module>/admin-<controllersuffix>/<action>',
-			'admin/<module:(example|omega)>-<controllersuffix>' =>
-				'<module>/admin-<controllersuffix>',
-		],
-	],
-```
-
-#### Генерация функционала **backend**-а с помощью Gii CRUD generator   <span id="recipe-crud"></span>
-
-Вы легко можете сгенерировать функционал CRUD-а как обычно, учитывая:
-* Имя контроллера и его пространство имен выбирайте соответственно [документации](#bcontroller)
-* ```View Path``` указывайте соответственно [структуре папок](#dir-structure) требуемой модулем
-
-#### Как подключать модуль в консольное приложение?   <span id="recipe-other-console"></span>
-
-Если в вашем модуле предусмотрены консольные команды, которые располагаются например тут:
-```
-Папка_с_модулем/
-  console/
-    commands/                // Папка для консольных комманд
-      HelloController.php
-  Module.php
-```	  
-, то в конфиге консольного приложения данный модуль подключается:
-
-```php
-    'modules' => [
-        'example' => [
-            'class' => 'modules\example\Module',
-            'controllerNamespace' => 'yourModuleNamespace\console\commands',
-        ],
-    ],
-```
-
-#### Куда располагать остальной функционал модуля?   <span id="recipe-other-functionality"></span>
-
-Данный модуль регламентирует только указанную выше [структуру папок](#dir-structure), где только от контроллеров
-и их виевсов ожидается конкретное расположение.  
-По остальному функционалу вы можете придерживаться следующих правил:
-* Если компонент четко относится только к одному типу - **backend** или **frontend**, то и помещайте его 
-в соответствующую подпапку
-* Если же такого разделения нет, то располагайте его в корне его папки.  
-Например для моделей
-```
-  models/
-    backend/
-      SomeBackendModel.php
-    frontend/
-      SomeFrontendModel.php	  
-    SomeCommonModel.php  
-```
-
-
-
-
-
-php yii migrate --migrationPath=@vendor/mgrechanik/yii2-catalog/src/console/migrations
