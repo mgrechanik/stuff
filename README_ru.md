@@ -143,7 +143,7 @@ AR модель и форма у нас не смешаны, поэтому де
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Какой класс модели формы использовать
 
 #### ```$indentedNameCreatorCallback``` <span id="intended-name">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Callback который сформирует название пункта каталога на странице всего
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Callback, который сформирует название пункта каталога на странице всего
 каталога с учетом отступа, чтобы отображалось как дерево 
 
 #### ```$catalogIndexView```, ```$catalogCreateView```, ```$catalogUpdateView```, ```$catalogFormView```, ```$catalogViewView``` 
@@ -155,7 +155,7 @@ AR модель и форма у нас не смешаны, поэтому де
 ```True``` по умолчанию. При ```false``` будет редиректить на страницу просмотра элемента каталога.
 
 #### ```$redirectToIndexAfterUpdate``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Аналогично предыдущему пункту по для задачи редактирования..
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Аналогично предыдущему пункту но для задачи редактирования..
 
 #### ```$validateCatalogModel``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Валидировать ли модель каталога перед сохранением.  
@@ -170,7 +170,7 @@ AR модель и форма у нас не смешаны, поэтому де
 
 ## Пример вывода каталога на frontend <span id="frontend-output"></span>
 
-Если вам теперь нужно это дерево каталога вывести в шаблон, просто выполните:
+Если вам теперь нужно это все дерево каталога вывести в любой шаблон, выполняем:
 ```php
 use mgrechanik\yiimaterializedpath\ServiceInterface;
 use mgrechanik\yii2catalog\models\Catalog;
@@ -186,7 +186,7 @@ $tree = $service->buildDescendantsTree($root);
 // Выводим на странице
 print TreeToListWidget::widget(['tree' => $tree]);
 ```
-И получим следующее дерево:
+Получим следующее дерево:
 <ul>
 <li>Laptops &amp; PC<ul>
 <li>Laptops</li>
