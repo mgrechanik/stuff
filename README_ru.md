@@ -113,7 +113,7 @@ php yii migrate --migrationPath=@vendor/mgrechanik/yii2-catalog/src/console/migr
 
 3) Укажите данному модулю использовать этот класс модели , через его св-во ```$catalogModelClass```
 
-4) Если у вашей модели нет имени ```name``` то настройте свойство модуля - [```indentedNameCreatorCallback```](#indented-name)
+4) Если у вашей модели нет имени ```name``` то настройте свойство модуля - [```$indentedNameCreatorCallback```](#indented-name)
 
 #### B) Настройка своей модели формы <span id="custom-ar-b"></span>
 
@@ -122,11 +122,11 @@ AR модель и форма у нас не смешаны, поэтому де
 1) Создайте свою модель формы, взяв полностью как пример модель [CatalogForm](#потом). 
 В ней мы добавили одно поле - ```name``` - а вы укажите ваши. Не забудьте про наследование от ```BaseCatalogForm```.
 
-2) Укажите данному модулю использовать этот класс модели формы, через его св-во ```catalogFormModelClass```
+2) Укажите данному модулю использовать этот класс модели формы, через его св-во ```$catalogFormModelClass```
 
 #### C) Настройка views <span id="custom-ar-c"></span>
 
-Данный модуль имеет возможность [настроить какие вьюхи использовать](#setup-views).
+Данный модуль имеет возможность настроить [какие views использовать](#setup-views).
 
 Вот те из них, которые несут дополнительную информацию, скопируйте, измените под вашу модель, и укажите модулю.
 
@@ -146,9 +146,9 @@ AR модель и форма у нас не смешаны, поэтому де
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Callback, который сформирует название пункта каталога на странице всего
 каталога с учетом отступа, чтобы отображалось как дерево 
 
-#### ```$catalogIndexView```, ```$catalogCreateView```, ```$catalogUpdateView```, ```$catalogFormView```, ```$catalogViewView``` 
+#### ```$catalogIndexView```, ```$catalogCreateView```, ```$catalogUpdateView```, ```$catalogFormView```, ```$catalogViewView``` <span id="setup-views"></span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- указывают соответствующие **views**, которые модуль будет использовать. 
-Формат смотрите в [документации](https://www.yiiframework.com/doc/api/2.0/yii-base-view#render()-detail). <span id="setup-views"></span>
+Формат смотрите в [документации](https://www.yiiframework.com/doc/api/2.0/yii-base-view#render()-detail). 
 
 #### ```$redirectToIndexAfterCreate``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Редиректить ли на страницу каталога после создания нового элемента.  
