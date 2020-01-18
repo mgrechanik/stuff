@@ -173,6 +173,7 @@ AR модель и форма у нас не смешаны, поэтому де
 Если вам теперь нужно это все дерево каталога вывести в любой шаблон, выполняем:
 ```php
 use mgrechanik\yiimaterializedpath\ServiceInterface;
+// Эта наша дефолтная AR модель каталога:
 use mgrechanik\yii2catalog\models\Catalog;
 use mgrechanik\yiimaterializedpath\widgets\TreeToListWidget;
 
