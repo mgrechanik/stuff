@@ -188,7 +188,7 @@ $tree = $service->buildDescendantsTree($root);
 // Выводим на странице
 print TreeToListWidget::widget(['tree' => $tree]);
 ```
-Получим следующее дерево:
+*Получим следующее дерево:*
 <ul>
 <li>Laptops &amp; PC<ul>
 <li>Laptops</li>

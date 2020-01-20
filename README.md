@@ -190,7 +190,7 @@ $tree = $service->buildDescendantsTree($root);
 // Print at the page
 print TreeToListWidget::widget(['tree' => $tree]);
 ```
-You will see the next tree:
+*You will see the next tree:*
 <ul>
 <li>Laptops &amp; PC<ul>
 <li>Laptops</li>
