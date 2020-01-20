@@ -7,7 +7,7 @@
 * [Goal](#goal)
 * [Demo](#demo)
 * [Installing](#installing)
-* [Дефолтная AR модель каталога данного расширения](#default-ar)
+* [Default AR catalog model of this extension](#default-ar)
 * [Использование своей AR модели](#custom-ar)
 * [Настройки модуля](#settings)
 * [Пример вывода каталога на frontend](#frontend-output)
@@ -42,7 +42,7 @@ The functionality of **backend** section will look like:
     
 ## Installing <span id="installing"></span>
 
-#### Установка через composer:
+#### Installing through composer:
 
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).:
 
@@ -85,15 +85,15 @@ Done. When you access ```/catalog``` page you will see all your catalog.
 
 ---
 
-## Дефолтная AR модель каталога данного расширения  <span id="default-ar"></span> 
+## Default AR catalog model of this extension  <span id="default-ar"></span> 
 
-**Обязательными** полями для модели каталога являются ```id, path, level, weight ``` (`id` при этом - первичный ключ), 
-они нужны для хранения позиции в дереве, . Остальные поля - уже те, которые требуются вам.
+The **required** fields for catalog model are ```id, path, level, weight ``` (`id` is the **primary key**), 
+they serve to saving tree position. The rest fields are ones you need.
 
-Если вам достаточно только одного дополнительного поля - ```name``` - то для этого в расширении имеется
-модель [Catalog](#потом), которая установлена моделью по умолчанию данного модуля.
+If you are satisfied with only one additional text field - ```name``` - then this extension provides
+[Catalog](#потом) model which is set as default catalog model of the mmodule.
 
-Именно работа с ней показана на [демо](#demo) выше.
+The work precisely with it is shown at [demo](#demo) above.
 
 
 ---
