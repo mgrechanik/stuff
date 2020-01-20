@@ -9,7 +9,7 @@
 * [Installing](#installing)
 * [Default AR catalog model of this extension](#default-ar)
 * [Using your own AR model](#custom-ar)
-* [Настройки модуля](#settings)
+* [Module settings](#settings)
 * [Пример вывода каталога на frontend](#frontend-output)
 
 
@@ -103,18 +103,18 @@ The work precisely with it is shown at [demo](#demo) above.
 If having one additional ```name``` field [default](#default-ar) catalog model gives is not enough 
 there is a way to use your own model with fields you need which will serve as catalog model.
 
-ДTo do this you need to follow the next steps:
+To do this you need to follow the next steps:
 
 #### А) Setting up your AR model <span id="custom-ar-a"></span>
 
-1) Generate the class of your AR model starting from table created by migration similar to [Catalog model migration](#потом). The main point here are [required](#default-ar) fields.
+1) Generate the class of your AR model starting from table created by migration similar to [Catalog model migration](#потом). The main point here are [required](#default-ar) fields
 
 2) Change the code of your AR model exactly like we did the same with [Catalog](#потом) model: 
 * change the table name
 * make it to be inherited from ```BaseCatalog``` class
 * Set up your additional fields in ```rules(), attributeLabels()```
 
-3) Set up your module to use this catalog module by using it's ```$catalogModelClass``` property
+3) Set up your module to use this catalog model by using it's ```$catalogModelClass``` property
 
 4) If your model does not have ```name``` field you need to set up [```$indentedNameCreatorCallback```](#indented-name) module property
 
@@ -125,7 +125,7 @@ AR model and form model are separated so the steps similar to **A)** needs to be
 1) Create your form model starting from [CatalogForm](#потом). 
 In the default form we added only one field - ```name``` but you need to add your own. Do not forget about inheritance from ```BaseCatalogForm```.
 
-2) et up your module to use this catalog module by using it's ```$catalogFormModelClass``` property
+2) Set up your module to use this catalog form model by using it's ```$catalogFormModelClass``` property
 
 #### C) Setting up views <span id="custom-ar-c"></span>
 
@@ -135,38 +135,38 @@ The ones of them with information which vary needs to be copied, changed as need
 
 ---
 
-## Настройки модуля <span id="settings"></span>
+## Module settings <span id="settings"></span>
 
-[Подключяя](#setup) модуль в приложение мы можем воспользоваться следующими его свойствами:
+[Setting up](#setup) the module into application we can use it's next properties:
 
 #### ```$catalogModelClass``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Какой класс AR модели каталога использовать
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Which catalog AR model class to use
 
 #### ```$catalogFormModelClass``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Какой класс модели формы использовать
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Which catalog form model class to use
 
 #### ```$indentedNameCreatorCallback``` <span id="indented-name">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Callback, который сформирует название пункта каталога на странице всего
-каталога с учетом отступа, чтобы отображалось как дерево 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Callback which will create the label of the catalog item at catalog view page
+considering indent needed to show catalog as a tree
 
 #### ```$catalogIndexView```, ```$catalogCreateView```, ```$catalogUpdateView```, ```$catalogFormView```, ```$catalogViewView``` <span id="setup-views"></span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- указывают соответствующие **views**, которые модуль будет использовать. 
-Формат смотрите в [документации](https://www.yiiframework.com/doc/api/2.0/yii-base-view#render()-detail). 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- the corresponding **views** for module to use. 
+For tt's format look into [documentation](https://www.yiiframework.com/doc/api/2.0/yii-base-view#render()-detail). 
 
 #### ```$redirectToIndexAfterCreate``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Редиректить ли на страницу каталога после создания нового элемента.  
-```True``` по умолчанию. При ```false``` будет редиректить на страницу просмотра элемента каталога.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to redirect to catalog view page after new element has been created.  
+```True``` by default. With ```false``` the redirect will be to catalog element view page.
 
 #### ```$redirectToIndexAfterUpdate``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Аналогично предыдущему пункту но для задачи редактирования..
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Similar to the previous property but for updation task.
 
 #### ```$validateCatalogModel``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Валидировать ли модель каталога перед сохранением.  
-По умолчанию ```false``` когда считается что из формы приходят уже валидные данные, ею проверенные.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to validate catalog model before saving.  
+Default ```false``` when we consider that the validation form makes is enough.
 
 #### ```$creatingSuccessMessage```, ```$updatingSuccessMessage```, ```$deletingSuccessMessage``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- тексты flash сообщений.  
-Если их менять, то не забудьте обеспечить их переводы в источнике ```yii2catalog```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- The texts of flash messages.  
+If you change them do not forget about theis translations in the ```yii2catalog``` source.
 
 
 ---
