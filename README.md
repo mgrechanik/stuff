@@ -1,12 +1,12 @@
-# Иерархический каталог из Active Record моделей под Yii2
+# Hierarchical catalog of Active Record models for Yii2 framework
 
-[English version](../README.md)
+[Русская версия](docs/README_ru.md)
 
-## Содержание
+## Table of contents
 
-* [Цель](#goal)
-* [Демо](#demo)
-* [Установка](#installing)
+* [Goal](#goal)
+* [Demo](#demo)
+* [Installing](#installing)
 * [Дефолтная AR модель каталога данного расширения](#default-ar)
 * [Использование своей AR модели](#custom-ar)
 * [Настройки модуля](#settings)
@@ -16,31 +16,31 @@
 
 ---
 
-## Цель <span id="goal"></span>
+## Goal <span id="goal"></span>
 
-Данное расширение предоставляет модуль со следующим функционалом:
+This extension gives you the module with the next functionality:
 
-1. Соединяет ```Active Record``` модели одной таблицы в дерево по алгоритму ```Materialized path```, с помощью [данного](https://github.com/mgrechanik/yii2-materialized-path) расширения
-2. Вы можете использовать свою ```ActiveRecord``` модель, с нужными вам полями, унаследовав ее от базовой модели данного расширения. [Подробнее](#custom-ar)
-3. Данный модуль следует структуре [универсального модуля](https://github.com/mgrechanik/yii2-universal-module-sceleton)
-4. По сути вы получите набор ```Active Record``` моделей, организованных в дерево, и ```CRUD``` операциями над ними в **backend** части
+1. It connects ```Active Record``` models of one table to a tree according to ```Materialized path``` algorithm using [this](https://github.com/mgrechanik/yii2-materialized-path) extension
+2. You can use your own ```ActiveRecord``` model with fiels you need by inheriting it from base catalog model of this extension. [Details](#custom-ar)
+3. This module follows approach of [universal module](https://github.com/mgrechanik/yii2-universal-module-sceleton)
+4. In fact you will have a set of ```Active Record``` models connected into a tree with ```CRUD``` operations with them at **backend** section
 
-    * Модуль не предоставляет функционала **frontend**-a, т.к. мы не знаем что будет помещаться в каталог
-    * Также подойдет он для организации хранения **системы тегов** (если они организованы иерархически)	
-	* Функционал ```CRUD``` страниц обеспечивает возможность указания/изменения позиции узла в дереве на любую допустимую
-	* Дальнейшая работа с таким деревом предполагает использование возможностей [Materialized path](https://github.com/mgrechanik/yii2-materialized-path) расширения **!** [Пример](#frontend-output)
-	* Индексная страница просмотра каталога предполагает вывод **всего** каталога, без пагинаций и фильтров
+    * This module gives no **frontend** section since we are not aware of what will be put into catalog
+    * It will also fit to serve for **tags system** (if they are organized hierarchically)	
+	* Functionality of ```CRUD``` pages provides a possibility to set up/change a position of each node in the tree to any valid position
+	* The futher work with a catalog tree is meant by using [Materialized path](https://github.com/mgrechanik/yii2-materialized-path) extension **!** [Example](#frontend-output)
+	* The index page of viewing a catalog tree assumes that **all** catalog needs to be displayed, without pagination or filtering
 
 ---
 
-## Демо <span id="demo"></span>
+## Demo <span id="demo"></span>
 
-Функционал **backend** части будет выглядеть так (если вывод на английском):
+The functionality of **backend** section will look like):
 ![получившийся функционал каталога](https://raw.githubusercontent.com/mgrechanik/yii2-materialized-path/master/docs/images/catalog.png "Функционал каталога")
 	
 ---
     
-## Установка <span id="installing"></span>
+## Installing <span id="installing"></span>
 
 #### Установка через composer:
 
