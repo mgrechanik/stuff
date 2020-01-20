@@ -149,22 +149,22 @@ AR модель и форма у нас не смешаны, поэтому де
 
 #### ```$catalogIndexView```, ```$catalogCreateView```, ```$catalogUpdateView```, ```$catalogFormView```, ```$catalogViewView``` <span id="setup-views"></span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- указывают соответствующие **views**, которые модуль будет использовать. 
-Формат смотрите в [документации](https://www.yiiframework.com/doc/api/2.0/yii-base-view#render()-detail). 
+Формат смотрите в [документации](https://www.yiiframework.com/doc/api/2.0/yii-base-view#render()-detail)
 
 #### ```$redirectToIndexAfterCreate``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Редиректить ли на страницу каталога после создания нового элемента.  
-```True``` по умолчанию. При ```false``` будет редиректить на страницу просмотра элемента каталога.
+```True``` по умолчанию. При ```false``` будет редиректить на страницу просмотра элемента каталога
 
 #### ```$redirectToIndexAfterUpdate``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Аналогично предыдущему пункту но для задачи редактирования.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Аналогично предыдущему пункту но для задачи редактирования
 
 #### ```$validateCatalogModel``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Валидировать ли модель каталога перед сохранением.  
-По умолчанию ```false``` когда считается что из формы приходят уже валидные данные, ею проверенные.
+По умолчанию ```false``` когда считается что из формы приходят уже валидные данные, ею проверенные
 
 #### ```$creatingSuccessMessage```, ```$updatingSuccessMessage```, ```$deletingSuccessMessage``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Тексты flash сообщений.  
-Если их менять, то не забудьте обеспечить их переводы в источнике ```yii2catalog```.
+Если их менять, то не забудьте обеспечить их переводы в источнике ```yii2catalog```
 
 
 ---

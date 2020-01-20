@@ -151,22 +151,22 @@ considering indent needed to show catalog as a tree
 
 #### ```$catalogIndexView```, ```$catalogCreateView```, ```$catalogUpdateView```, ```$catalogFormView```, ```$catalogViewView``` <span id="setup-views"></span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- the corresponding **views** for module to use. 
-For tt's format look into [documentation](https://www.yiiframework.com/doc/api/2.0/yii-base-view#render()-detail). 
+For tt's format look into [documentation](https://www.yiiframework.com/doc/api/2.0/yii-base-view#render()-detail)
 
 #### ```$redirectToIndexAfterCreate``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to redirect to catalog view page after new element has been created.  
-```True``` by default. With ```false``` the redirect will be to catalog element view page.
+```True``` by default. With ```false``` the redirect will be to catalog element view page
 
 #### ```$redirectToIndexAfterUpdate``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Similar to the previous property but for updation task.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Similar to the previous property but for updation task
 
 #### ```$validateCatalogModel``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to validate catalog model before saving.  
-Default ```false``` when we consider that the validation form makes is enough.
+Default ```false``` when we consider that the validation form makes is enough
 
 #### ```$creatingSuccessMessage```, ```$updatingSuccessMessage```, ```$deletingSuccessMessage``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- The texts of flash messages.  
-If you change them do not forget about theis translations in the ```yii2catalog``` source.
+If you change them do not forget about theis translations in the ```yii2catalog``` source
 
 
 ---
