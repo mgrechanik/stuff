@@ -8,7 +8,7 @@
 * [Demo](#demo)
 * [Installing](#installing)
 * [Default AR catalog model of this extension](#default-ar)
-* [Использование своей AR модели](#custom-ar)
+* [Using your own AR model](#custom-ar)
 * [Настройки модуля](#settings)
 * [Пример вывода каталога на frontend](#frontend-output)
 
@@ -88,49 +88,50 @@ Done. When you access ```/catalog``` page you will see all your catalog.
 ## Default AR catalog model of this extension  <span id="default-ar"></span> 
 
 The **required** fields for catalog model are ```id, path, level, weight ``` (`id` is the **primary key**), 
-they serve to saving tree position. The rest fields are ones you need.
+they serve to saving tree position. The rest of the fields are ones you need.
 
 If you are satisfied with only one additional text field - ```name``` - then this extension provides
-[Catalog](#потом) model which is set as default catalog model of the mmodule.
+[Catalog](#потом) model which is set as the default catalog model of the module.
 
 The work precisely with it is shown at [demo](#demo) above.
 
 
 ---
 
-## Использование своей AR модели  <span id="custom-ar"></span>   
+## Using your own AR model  <span id="custom-ar"></span>   
 
-Если вам недостаточно одного дополнительного поля имени, предоставленного [дефолтной](#default-ar) моделью,
-имеется возможность создать свою модель, с нужными вам полями, и указать ее как модель каталога.
+If having one additional ```name``` field [default](#default-ar) catalog model gives is not enough 
+there is a way to use your own model with fields you need which will serve as catalog model.
 
-Для того чтобы все это сделать, вам нужно проделать следующие шаги:
+ДTo do this you need to follow the next steps:
 
-#### А) Настройка своей AR модели <span id="custom-ar-a"></span>
+#### А) Setting up your AR model <span id="custom-ar-a"></span>
 
-1) Сгенерируйте класс вашей AR модели, взяв за основу [миграцию для модели Catalog](#потом), главно тут - [обязательные](#default-ar) поля.
+1) Generate the class of your AR model starting from table created by migration similar to [Catalog model migration](#потом). The main point here are [required](#default-ar) fields.
 
-2) Измените код вашей модели полностью идентично как мы сделали для [Catalog](#потом) модели: 
-* указать имя таблицы
-* указать ваши дополнительные поля в ```rules(), attributeLabels()```
+2) Change the code of your AR model exactly like we did the same with [Catalog](#потом) model: 
+* change the table name
+* make it to be inherited from ```BaseCatalog``` class
+* Set up your additional fields in ```rules(), attributeLabels()```
 
-3) Укажите данному модулю использовать этот класс модели , через его св-во ```$catalogModelClass```
+3) Set up your module to use this catalog module by using it's ```$catalogModelClass``` property
 
-4) Если у вашей модели нет имени ```name``` то настройте свойство модуля - [```$indentedNameCreatorCallback```](#indented-name)
+4) If your model does not have ```name``` field you need to set up [```$indentedNameCreatorCallback```](#indented-name) module property
 
-#### B) Настройка своей модели формы <span id="custom-ar-b"></span>
+#### B) Setting up your catalog form model <span id="custom-ar-b"></span>
 
-AR модель и форма у нас не смешаны, поэтому действия похожие на **A)** должны быть произведены и над моделью формы.
+AR model and form model are separated so the steps similar to **A)** needs to be performed to your form model.
 
-1) Создайте свою модель формы, взяв полностью как пример модель [CatalogForm](#потом). 
-В ней мы добавили одно поле - ```name``` - а вы укажите ваши. Не забудьте про наследование от ```BaseCatalogForm```.
+1) Create your form model starting from [CatalogForm](#потом). 
+In the default form we added only one field - ```name``` but you need to add your own. Do not forget about inheritance from ```BaseCatalogForm```.
 
-2) Укажите данному модулю использовать этот класс модели формы, через его св-во ```$catalogFormModelClass```
+2) et up your module to use this catalog module by using it's ```$catalogFormModelClass``` property
 
-#### C) Настройка views <span id="custom-ar-c"></span>
+#### C) Setting up views <span id="custom-ar-c"></span>
 
-Данный модуль имеет возможность настроить [какие views использовать](#setup-views).
+This module has an opportunity to set up [which views to use](#setup-views).
 
-Вот те из них, которые несут дополнительную информацию, скопируйте, измените под вашу модель, и укажите модулю.
+The ones of them with information which vary needs to be copied, changed as needed and set up to module.
 
 ---
 
