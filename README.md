@@ -21,7 +21,7 @@
 This extension gives you the module with the next functionality:
 
 1. It connects ```Active Record``` models of one table to a tree according to ```Materialized path``` algorithm using [this](https://github.com/mgrechanik/yii2-materialized-path) extension
-2. You can use your own ```ActiveRecord``` model with fiels you need by inheriting it from base catalog model of this extension. [Details](#custom-ar)
+2. You can use your own ```ActiveRecord``` model with fields you need by inheriting it from base catalog model of this extension. [Details](#custom-ar)
 3. This module follows approach of [universal module](https://github.com/mgrechanik/yii2-universal-module-sceleton)
 4. In fact you will have a set of ```Active Record``` models connected into a tree with ```CRUD``` operations with them at **backend** section
 
@@ -35,8 +35,8 @@ This extension gives you the module with the next functionality:
 
 ## Demo <span id="demo"></span>
 
-The functionality of **backend** section will look like):
-![получившийся функционал каталога](https://raw.githubusercontent.com/mgrechanik/yii2-materialized-path/master/docs/images/catalog.png "Функционал каталога")
+The functionality of **backend** section will look like:
+![Functionality of catalog we get](https://raw.githubusercontent.com/mgrechanik/yii2-materialized-path/master/docs/images/catalog.png "Catalog functionality")
 	
 ---
     
@@ -44,42 +44,44 @@ The functionality of **backend** section will look like):
 
 #### Установка через composer:
 
-Выполните
+The preferred way to install this extension is through [composer](http://getcomposer.org/download/).:
+
+Either run
 ```
 composer require --prefer-dist mgrechanik/yii2-catalog
 ```
 
-или добавьте
+or add
 ```
 "mgrechanik/yii2-catalog" : "~1.0.0"
 ```
-в  `require` секцию вашего `composer.json` файла.
+to the require section of your `composer.json`
 
-#### Миграции
+#### Migrations
 
-Если вам не требуются дополнительные поля для ```Active Record``` модели ([подробнее](#custom-ar)), то таблицу для [дефолтного](#default-ar) каталога
-вы можете создать выполнив:
+If you do not need additional fields to catalog ```Active Record``` model ([details](#custom-ar)) then the table for [default](#default-ar) catalog
+you can create by running:
 
 ```
 php yii migrate --migrationPath=@vendor/mgrechanik/yii2-catalog/src/console/migrations
 ```
 
-#### Подключение модуля  <span id="setup"></span>
+#### Setting the module up  <span id="setup"></span>
 
-Как говорилось [выше](#goal), данный модуль следует структуре *универсального модуля* и предоставляет при этом
-только страницы **backend**-а, то при его подключении укажите следующий режим (```mode```):
+As was mentioned [before](#goal) this module follows the approach of *universal module*, and since it gives you
+only **backend** pages when you set up it into your application specify the next ```mode``` :
 ```
     'modules' => [
         'catalog' => [
             'class' => 'mgrechanik\yii2catalog\Module',
             'mode' => 'backend',
-            // Другие настройки модуля
+            // Other module settings
         ],
         // ...
     ],
 ```
 
-Все. При переходе по адресу ```/catalog``` вы будете видеть весь ваш каталог.
+Done. When you access ```/catalog``` page you will see all your catalog.
 
 ---
 
