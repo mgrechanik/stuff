@@ -60,7 +60,7 @@ to the require section of your `composer.json`
 #### Migrations
 
 If you do not need additional fields to catalog ```Active Record``` model ([details](#custom-ar)) then the table for [default](#default-ar) catalog
-you can create by running:
+can be created by running:
 
 ```
 php yii migrate --migrationPath=@vendor/mgrechanik/yii2-catalog/src/console/migrations
@@ -69,7 +69,7 @@ php yii migrate --migrationPath=@vendor/mgrechanik/yii2-catalog/src/console/migr
 #### Setting the module up  <span id="setup"></span>
 
 As was mentioned [before](#goal) this module follows the approach of *universal module*, and since it gives you
-only **backend** pages when you set up it into your application specify the next ```mode``` :
+only **backend** pages when you set it up into your application specify the next ```mode``` :
 ```
     'modules' => [
         'catalog' => [
@@ -120,10 +120,10 @@ To do this you need to follow the next steps:
 
 #### B) Setting up your catalog form model <span id="custom-ar-b"></span>
 
-AR model and form model are separated so the steps similar to **A)** needs to be performed to your form model.
+AR model and form model are separated so the steps similar to **A)** need to be performed to your form model.
 
 1) Create your form model starting from [CatalogForm](#потом). 
-In the default form we added only one field - ```name``` but you need to add your own. Do not forget about inheritance from ```BaseCatalogForm```.
+In the default form we added only one field - ```name``` but you need to add your own. Do not forget about inheritance from ```BaseCatalogForm```
 
 2) Set up your module to use this catalog form model by using it's ```$catalogFormModelClass``` property
 
@@ -162,7 +162,7 @@ For it's format look into [documentation](https://www.yiiframework.com/doc/api/2
 
 #### ```$validateCatalogModel``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to validate catalog model before saving.  
-Default ```false``` when we consider that the validation form makes is enough
+Default ```false``` when we consider that the validation form performes is enough
 
 #### ```$creatingSuccessMessage```, ```$updatingSuccessMessage```, ```$deletingSuccessMessage``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- The texts of flash messages.  
@@ -173,7 +173,7 @@ If you change them do not forget about their translations in the ```yii2catalog`
 
 ## Example of displaying a catalog at frontend <span id="frontend-output"></span>
 
-If you need to output some catalog into any template just run:
+If you need to output your catalog into any template just run:
 ```php
 use mgrechanik\yiimaterializedpath\ServiceInterface;
 // This is our default catalog model:
