@@ -10,7 +10,7 @@
 * [Default AR catalog model of this extension](#default-ar)
 * [Using your own AR model](#custom-ar)
 * [Module settings](#settings)
-* [Пример вывода каталога на frontend](#frontend-output)
+* [Example of displaying a catalog at frontend](#frontend-output)
 
 
 
@@ -151,7 +151,7 @@ considering indent needed to show catalog as a tree
 
 #### ```$catalogIndexView```, ```$catalogCreateView```, ```$catalogUpdateView```, ```$catalogFormView```, ```$catalogViewView``` <span id="setup-views"></span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- the corresponding **views** for module to use. 
-For tt's format look into [documentation](https://www.yiiframework.com/doc/api/2.0/yii-base-view#render()-detail)
+For it's format look into [documentation](https://www.yiiframework.com/doc/api/2.0/yii-base-view#render()-detail)
 
 #### ```$redirectToIndexAfterCreate``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to redirect to catalog view page after new element has been created.  
@@ -166,31 +166,31 @@ Default ```false``` when we consider that the validation form makes is enough
 
 #### ```$creatingSuccessMessage```, ```$updatingSuccessMessage```, ```$deletingSuccessMessage``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- The texts of flash messages.  
-If you change them do not forget about theis translations in the ```yii2catalog``` source
+If you change them do not forget about their translations in the ```yii2catalog``` source
 
 
 ---
 
-## Пример вывода каталога на frontend <span id="frontend-output"></span>
+## Example of displaying a catalog at frontend <span id="frontend-output"></span>
 
-Если вам теперь нужно это все дерево каталога вывести в любой шаблон, выполняем:
+If you need to output some catalog into any template just run:
 ```php
 use mgrechanik\yiimaterializedpath\ServiceInterface;
-// Эта наша дефолтная AR модель каталога:
+// This is our default catalog model:
 use mgrechanik\yii2catalog\models\Catalog;
 use mgrechanik\yiimaterializedpath\widgets\TreeToListWidget;
 
-// получаем сервис управления деревьями
+// get the trees managing service
 $service = \Yii::createObject(ServiceInterface::class);
-// Получаем элемент относительно которого строим дерево.
-// В данном случае это корневой элемент
+// Get the element relevant to who we build the tree.
+// In our case it is the Root node
 $root = $service->getRoot(Catalog::class);
-// Строим дерево из потомков корневого узла
+// Build the tree from descendants of the Root node
 $tree = $service->buildDescendantsTree($root);
-// Выводим на странице
+// Print at the page
 print TreeToListWidget::widget(['tree' => $tree]);
 ```
-Получим следующее дерево:
+You will see the next tree:
 <ul>
 <li>Laptops &amp; PC<ul>
 <li>Laptops</li>
