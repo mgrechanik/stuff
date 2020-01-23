@@ -149,8 +149,8 @@ and ```$backendControllers``` the next happens:
 1) These two properties will be taken from parent naturally
 2) But the basic controller namespace will be set to your module namespace.
 You do not have such controllers and you do not want to create their copies
-3) There are next opportunities how to make your module to use controllers from some his ancestor:
-    * If controllers reside with **immediate** parent of your module set it the property
+3) There are next opportunities how to make your module to use controllers from any of his ancestors:
+    * If controllers reside with **immediate** parent of your module set it the next property
 	```$takeControllersFromParentModule = true```
     * If controllers are in some other module, say ```'Omega'```, then set the property of your module  ```$baseControllerNamespace``` to **namespace** of ```'Omega'``` module
     * ```Views``` will be searched by default according to settings above	
@@ -198,7 +198,7 @@ It is ```false``` by default, meaning no taking.
 But with this property you can tell to take controllers from immediate parent of current module
 
 #### ```$baseViewsPath``` - basic path where to find module's ```views```
-By default it is not used. 
+By default it is not used.  
 It is automatically set up whether to current module directory or relevant to the two properties above when they are set.   
 But with this property you can finally say where to search for ```views```. Example of value: ```'@mgrechanik/yii2catalog'```
 
