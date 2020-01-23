@@ -153,7 +153,7 @@ You do not have such controllers and you do not want to create their copies
     * If controllers reside with **immediate** parent of your module set it the property
 	```$takeControllersFromParentModule = true```
     * If controllers are in some other module, say ```'Omega'```, then set the property of your module  ```$baseControllerNamespace``` to **namespace** of ```'Omega'``` module
-    * ```View```s will be searched by default according to settings above	
+    * ```Views``` will be searched by default according to settings above	
 
 ---
 
@@ -188,6 +188,19 @@ It is handy, for example, to restrict access to such controllers using yii filte
 
 #### ```$frontendControllerConfig``` - **frontend** controllers settings
 It is the same like ```$backendControllerConfig```
+
+#### ```$baseControllerNamespace``` - the basic namespace for the controllers the module uses
+By default it is not used and controllers will be searched relevant to your current module namespace.  
+But with this property you can tell to take controllers from any other module
+
+#### ```$takeControllersFromParentModule``` - whether to take controllers from parent
+It is ```false``` by default, meaning no taking.  
+But with this property you can tell to take controllers from immediate parent of current module
+
+#### ```$baseViewsPath``` - basic path where to find module's ```views```
+By default it is not used. 
+It is automatically set up whether to current module directory or relevant to the two properties above when they are set.   
+But with this property you can finally say where to search for ```views```. Example of value: ```'@mgrechanik/yii2catalog'```
 
 ---
 
