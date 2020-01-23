@@ -9,6 +9,7 @@
 * [Installing](#installing)
 * [What it is about](#gist)
 * [Using](#using)
+* [Module inheritance](#inheritance)
 * [Module settings](#settings)
 * [Example with *Basic* template](#example-basic)
 * [How-to](#recipe)
@@ -27,6 +28,7 @@ This extension gives the structure of the module which:
 
     * connects to module section only one time
     * there is functionality of protection to all **backend** controllers  (for admin part of your web site) 
+5. it is easy to inherit such modules from one another to override functionality without controllers duplication
 	
 ---
     
@@ -137,6 +139,21 @@ class YourModule extends UniversalModule
 
 > It is comfortable to connect all such modules at first level of application modules, without nested modules 
 > but like a simple list of modules we used to see at admin pages of popular **CMS**s, which also gives short urls.
+
+---
+
+## Module inheritance <span id="inheritance"></span>
+
+When you inherit your module class from existing one without overriding ```$frontendControllers```
+and ```$backendControllers``` the next happens:
+1) These two properties will be taken from parent naturally
+2) But the basic controller namespace will be set to your module namespace.
+You do not have such controllers and you do not want to create their copies
+3) There are next opportunities how to make your module to use controllers from some his ancestor:
+    * If controllers reside with **immediate** parent of your module set it the property
+	```$takeControllersFromParentModule = true```
+    * If controllers are in some other module, say ```'Omega'```, then set the property of your module  ```$baseControllerNamespace``` to **namespace** of ```'Omega'``` module
+    * ```View```s will be searched by default according to settings above	
 
 ---
 
