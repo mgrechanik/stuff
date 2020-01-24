@@ -29,7 +29,7 @@ This extension gives you the module with the next functionality:
     * It will also fit to serve for **tags system** (if they are organized hierarchically)	
 	* Functionality of ```CRUD``` pages provides a possibility to set up/change a position of each node in the tree to any valid position
 	* The futher work with a category tree is meant by using [Materialized path](https://github.com/mgrechanik/yii2-materialized-path) extension **!** [Example](#frontend-output)
-	* The index page of viewing a category tree assumes that **all** category needs to be displayed, without pagination or filtering
+	* The index page of viewing a categories tree assumes that **all** category needs to be displayed, without pagination or filtering
 
 ---
 
@@ -101,7 +101,7 @@ The work precisely with it is shown at [demo](#demo) above.
 ## Using your own AR model  <span id="custom-ar"></span>   
 
 If having one additional ```name``` field [default](#default-ar) category model gives is not enough 
-there is a way to use your own model with fields you need which will serve as category model.
+there is a way to use your own model with fields you need which will serve as a category model.
 
 To do this you need to follow the next steps:
 
@@ -146,16 +146,16 @@ The ones of them with information which vary needs to be copied, changed as need
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Which category form model class to use
 
 #### ```$indentedNameCreatorCallback``` <span id="indented-name">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Callback which will create the label of the category item at category view page
-considering indent needed to show category as a tree
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Callback which will create the label of the category at the categories page
+considering indent needed to show categories as a tree
 
 #### ```$categoryIndexView```, ```$categoryCreateView```, ```$categoryUpdateView```, ```$categoryFormView```, ```$categoryViewView``` <span id="setup-views"></span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- the corresponding **views** for module to use. 
 For it's format look into [documentation](https://www.yiiframework.com/doc/api/2.0/yii-base-view#render()-detail)
 
 #### ```$redirectToIndexAfterCreate``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to redirect to category view page after new element has been created.  
-```True``` by default. With ```false``` the redirect will be to category element view page
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to redirect to the categories page after new element has been created.  
+```True``` by default. With ```false``` the redirect will be to category view page
 
 #### ```$redirectToIndexAfterUpdate``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Similar to the previous property but for updation task
@@ -173,7 +173,7 @@ If you change them do not forget about their translations in the ```yii2category
 
 ## Example of displaying a categories tree at frontend <span id="frontend-output"></span>
 
-If you need to output your category into any template just run:
+If you need to output your categories tree into any template just run:
 ```php
 use mgrechanik\yiimaterializedpath\ServiceInterface;
 // This is our default category model:

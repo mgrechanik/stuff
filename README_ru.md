@@ -152,7 +152,7 @@ AR модель и форма у нас не смешаны, поэтому де
 Формат смотрите в [документации](https://www.yiiframework.com/doc/api/2.0/yii-base-view#render()-detail)
 
 #### ```$redirectToIndexAfterCreate``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Редиректить ли на страницу каталога после создания нового элемента.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Редиректить ли на страницу всех категорий после создания нового элемента.  
 ```True``` по умолчанию. При ```false``` будет редиректить на страницу просмотра категории
 
 #### ```$redirectToIndexAfterUpdate``` 
