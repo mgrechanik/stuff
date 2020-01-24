@@ -1,4 +1,4 @@
-# Hierarchical catalog of Active Record models for Yii2 framework
+# Active Record hierarchical categories (or tags) for Yii2 framework
 
 [Русская версия](docs/README_ru.md)
 
@@ -36,7 +36,7 @@ This extension gives you the module with the next functionality:
 ## Demo <span id="demo"></span>
 
 The functionality of **backend** section will look like:
-![Functionality of catalog we get](https://raw.githubusercontent.com/mgrechanik/yii2-materialized-path/master/docs/images/catalog.png "Catalog functionality")
+![Functionality of catalog we get](https://raw.githubusercontent.com/mgrechanik/yii2-categories-and-tags/master/docs/images/categories.png "Catalog functionality")
 	
 ---
     
@@ -72,8 +72,8 @@ As was mentioned [before](#goal) this module follows the approach of *universal 
 only **backend** pages when you set it up into your application specify the next ```mode``` :
 ```
     'modules' => [
-        'catalog' => [
-            'class' => 'mgrechanik\yii2catalog\Module',
+        'category' => [
+            'class' => 'mgrechanik\yii2category\Module',
             'mode' => 'backend',
             // Other module settings
         ],
@@ -81,7 +81,7 @@ only **backend** pages when you set it up into your application specify the next
     ],
 ```
 
-Done. When you access ```/catalog``` page you will see all your catalog.
+Done. When you access ```/category``` page you will see all your catalog.
 
 ---
 
@@ -91,7 +91,7 @@ The **required** fields for catalog model are ```id, path, level, weight ``` (`i
 they serve to saving tree position. The rest of the fields are ones you need.
 
 If you are satisfied with only one additional text field - ```name``` - then this extension provides
-[Catalog](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/models/Catalog.php) model which is set as the default catalog model of the module.
+[Category](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/models/Category.php) model which is set as the default catalog model of the module.
 
 The work precisely with it is shown at [demo](#demo) above.
 
@@ -107,14 +107,14 @@ To do this you need to follow the next steps:
 
 #### А) Setting up your AR model <span id="custom-ar-a"></span>
 
-1) Generate the class of your AR model starting from table created by migration similar to [Catalog model migration](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/console/migrations/m180908_094405_create_catalog_table.php). The main point here are [required](#default-ar) fields
+1) Generate the class of your AR model starting from table created by migration similar to [Category model migration](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/console/migrations/m180908_094405_create_category_table.php). The main point here are [required](#default-ar) fields
 
-2) Change the code of your AR model exactly like we did the same with [Catalog](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/models/Catalog.php) model: 
+2) Change the code of your AR model exactly like we did the same with [Category](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/models/Category.php) model: 
 * change the table name
-* make it to be inherited from ```BaseCatalog``` class
+* make it to be inherited from ```BaseCategory``` class
 * Set up your additional fields in ```rules(), attributeLabels()```
 
-3) Set up your module to use this catalog model by using it's ```$catalogModelClass``` property
+3) Set up your module to use this category model by using it's ```$categoryModelClass``` property
 
 4) If your model does not have ```name``` field you need to set up [```$indentedNameCreatorCallback```](#indented-name) module property
 
@@ -122,10 +122,10 @@ To do this you need to follow the next steps:
 
 AR model and form model are separated so the steps similar to **A)** need to be performed to your form model.
 
-1) Create your form model starting from [CatalogForm](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/ui/forms/backend/CatalogForm.php). 
-In the default form we added only one field - ```name``` but you need to add your own. Do not forget about inheritance from ```BaseCatalogForm```
+1) Create your form model starting from [CategoryForm](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/ui/forms/backend/CategoryForm.php). 
+In the default form we added only one field - ```name``` but you need to add your own. Do not forget about inheritance from ```BaseCategoryForm```
 
-2) Set up your module to use this catalog form model by using it's ```$catalogFormModelClass``` property
+2) Set up your module to use this catalog form model by using it's ```$categoryFormModelClass``` property
 
 #### C) Setting up views <span id="custom-ar-c"></span>
 
@@ -139,17 +139,17 @@ The ones of them with information which vary needs to be copied, changed as need
 
 [Setting up](#setup) the module into application we can use it's next properties:
 
-#### ```$catalogModelClass``` 
+#### ```$categoryModelClass``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Which catalog AR model class to use
 
-#### ```$catalogFormModelClass``` 
+#### ```$categoryFormModelClass``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Which catalog form model class to use
 
 #### ```$indentedNameCreatorCallback``` <span id="indented-name">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Callback which will create the label of the catalog item at catalog view page
 considering indent needed to show catalog as a tree
 
-#### ```$catalogIndexView```, ```$catalogCreateView```, ```$catalogUpdateView```, ```$catalogFormView```, ```$catalogViewView``` <span id="setup-views"></span>
+#### ```$categoryIndexView```, ```$categoryCreateView```, ```$categoryUpdateView```, ```$categoryFormView```, ```$categoryViewView``` <span id="setup-views"></span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- the corresponding **views** for module to use. 
 For it's format look into [documentation](https://www.yiiframework.com/doc/api/2.0/yii-base-view#render()-detail)
 
@@ -160,13 +160,13 @@ For it's format look into [documentation](https://www.yiiframework.com/doc/api/2
 #### ```$redirectToIndexAfterUpdate``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Similar to the previous property but for updation task
 
-#### ```$validateCatalogModel``` 
+#### ```$validateCategoryModel``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to validate catalog model before saving.  
 Default ```false``` when we consider that the validation form performes is enough
 
 #### ```$creatingSuccessMessage```, ```$updatingSuccessMessage```, ```$deletingSuccessMessage``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- The texts of flash messages.  
-If you change them do not forget about their translations in the ```yii2catalog``` source
+If you change them do not forget about their translations in the ```yii2category``` source
 
 
 ---
@@ -176,15 +176,15 @@ If you change them do not forget about their translations in the ```yii2catalog`
 If you need to output your catalog into any template just run:
 ```php
 use mgrechanik\yiimaterializedpath\ServiceInterface;
-// This is our default catalog model:
-use mgrechanik\yii2catalog\models\Catalog;
+// This is our default category model:
+use mgrechanik\yii2category\models\Category;
 use mgrechanik\yiimaterializedpath\widgets\TreeToListWidget;
 
 // get the trees managing service
 $service = \Yii::createObject(ServiceInterface::class);
 // Get the element relevant to who we build the tree.
 // In our case it is the Root node
-$root = $service->getRoot(Catalog::class);
+$root = $service->getRoot(Category::class);
 // Build the tree from descendants of the Root node
 $tree = $service->buildDescendantsTree($root);
 // Print at the page
