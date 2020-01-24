@@ -15,9 +15,9 @@
 ## Цель <span id="goal"></span>
 
 Данное расширение предоставляет **вариацию** [модуля категорий](https://github.com/mgrechanik/yii2-categories-and-tags), 
-в котором давалась возможность создавать любые свои ```Active Record``` модели категорий.
+в котором давалась [возможность](https://github.com/mgrechanik/yii2-categories-and-tags#custom-ar) создавать любые свои ```Active Record``` модели категорий.
 
-Мы предполагаем что создавая на **frontend** страницы с выводом содержимого категории(или тега) нам для
+Мы предполагаем что создавая на **frontend** страницы с выводом содержимого категории (или тега) нам для
 такой страницы категории потребуется управление ее SEO информацией.
 
 Соответственно в нашу модель SEO категории мы добавляем следующие поля:
@@ -53,10 +53,10 @@ composer require --prefer-dist mgrechanik/yii2-seo-categories
 #### Миграции
 
 Данное расширение идет с двумя миграциями:
-- первая создает таблицу seo каталога со всеми необходимыми индексами
+- первая создает таблицу SEO категорий со всеми необходимыми индексами
 - вторая создает уникальный индекс по полю ```slug```
 
-Вы можете их обе выполнить:
+Вы можете выполнить их обе:
 
 ```
 php yii migrate --migrationPath=@vendor/mgrechanik/yii2-seo-categories/src/console/migrations
@@ -70,7 +70,7 @@ php yii migrate 1 --migrationPath=@vendor/mgrechanik/yii2-seo-categories/src/con
 
 #### Подключение модуля  <span id="setup"></span>
 
-Как говорилось [выше](#goal), данный модуль следует структуре *универсального модуля* и предоставляет при этом
+Как говорилось [в базом модуле категорий](https://github.com/mgrechanik/yii2-categories-and-tags#goal), данный модуль следует структуре *универсального модуля* и предоставляет при этом
 только страницы **backend**-а, то при его подключении укажите следующий режим (```mode```):
 ```
     'modules' => [
@@ -89,71 +89,21 @@ php yii migrate 1 --migrationPath=@vendor/mgrechanik/yii2-seo-categories/src/con
 
 ## Настройки модуля <span id="settings"></span>
 
-[Подключяя](#setup) модуль в приложение мы можем воспользоваться следующими его свойствами:
+[Подключяя](#setup) модуль в приложение мы, помимо всех св-в [модуля категорий](https://github.com/mgrechanik/yii2-categories-and-tags#settings),
+ можем воспользоваться следующими его свойствами:
 
-#### ```$categoryModelClass``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Какой класс AR модели категории использовать
+#### ```$useMetaOtherField = false``` 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Использовать ли поле ввода всех прочих мета тегов
 
-#### ```$categoryFormModelClass``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Какой класс модели формы использовать
+#### ```$useSlugField = true``` 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Использовать ли поле ввода "хвостовика адреса". Он предполагает быть уникальным
 
-#### ```$indentedNameCreatorCallback``` <span id="indented-name">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Callback, который сформирует название категории на странице всего
-списка категорий с учетом отступа, чтобы отображалось как дерево 
+#### ```$slugPattern``` 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- При использовании предыдущего поля здесь указываем регулярку допустимых символов 
 
-#### ```$categoryIndexView```, ```$categoryCreateView```, ```$categoryUpdateView```, ```$categoryFormView```, ```$categoryViewView``` <span id="setup-views"></span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- указывают соответствующие **views**, которые модуль будет использовать. 
-Формат смотрите в [документации](https://www.yiiframework.com/doc/api/2.0/yii-base-view#render()-detail)
+#### ```$showTitleColumnAtIndexPage = true```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Показывать ли поле ```title``` в гриде списка категорий
 
-#### ```$redirectToIndexAfterCreate``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Редиректить ли на страницу всех категорий после создания нового элемента.  
-```True``` по умолчанию. При ```false``` будет редиректить на страницу просмотра категории
-
-#### ```$redirectToIndexAfterUpdate``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Аналогично предыдущему пункту но для задачи редактирования
-
-#### ```$validateCategoryModel``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Валидировать ли модель категории перед сохранением.  
-По умолчанию ```false``` когда считается что из формы приходят уже валидные данные, ею проверенные
-
-#### ```$creatingSuccessMessage```, ```$updatingSuccessMessage```, ```$deletingSuccessMessage``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Тексты flash сообщений.  
-Если их менять, то не забудьте обеспечить их переводы в источнике ```yii2category```
-
-
----
-
-## Пример вывода списка категорий на frontend <span id="frontend-output"></span>
-
-Если вам теперь нужно это все дерево категорий вывести в любой шаблон, выполняем:
-```php
-use mgrechanik\yiimaterializedpath\ServiceInterface;
-// Эта наша дефолтная AR модель категории:
-use mgrechanik\yii2category\models\Category;
-use mgrechanik\yiimaterializedpath\widgets\TreeToListWidget;
-
-// получаем сервис управления деревьями
-$service = \Yii::createObject(ServiceInterface::class);
-// Получаем элемент относительно которого строим дерево.
-// В данном случае это корневой элемент
-$root = $service->getRoot(Category::class);
-// Строим дерево из потомков корневого узла
-$tree = $service->buildDescendantsTree($root);
-// Выводим на странице
-print TreeToListWidget::widget(['tree' => $tree]);
-```
-*Получим следующее дерево:*
-<ul>
-<li>Laptops &amp; PC<ul>
-<li>Laptops</li>
-<li>PC</li>
-</ul></li>
-<li>Phones &amp; Accessories<ul>
-<li>Smartphones<ul>
-<li>Android</li>
-<li>iOS</li>
-</ul></li>
-<li>Batteries</li>
-</ul></li>
-</ul>
+#### ```$showSlugColumnAtIndexPage = false``` 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Показывать ли поле ```slug``` в гриде списка категорий
 
