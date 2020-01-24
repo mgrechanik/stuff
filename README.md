@@ -7,10 +7,10 @@
 * [Goal](#goal)
 * [Demo](#demo)
 * [Installing](#installing)
-* [Default AR catalog model of this extension](#default-ar)
+* [Default AR category model of this extension](#default-ar)
 * [Using your own AR model](#custom-ar)
 * [Module settings](#settings)
-* [Example of displaying a catalog at frontend](#frontend-output)
+* [Example of displaying a categories tree at frontend](#frontend-output)
 
 
 
@@ -21,22 +21,22 @@
 This extension gives you the module with the next functionality:
 
 1. It connects ```Active Record``` models of one table to a tree according to ```Materialized path``` algorithm using [this](https://github.com/mgrechanik/yii2-materialized-path) extension
-2. You can use your own ```ActiveRecord``` model with fields you need by inheriting it from base catalog model of this extension. [Details](#custom-ar)
+2. You can use your own ```ActiveRecord``` model with fields you need by inheriting it from base category model of this extension. [Details](#custom-ar)
 3. This module follows approach of [universal module](https://github.com/mgrechanik/yii2-universal-module-sceleton)
 4. In fact you will have a set of ```Active Record``` models connected into a tree with ```CRUD``` operations with them at **backend** section
 
-    * This module gives no **frontend** section since we are not aware of what will be put into catalog
+    * This module gives no **frontend** section since we are not aware of what will be put into category
     * It will also fit to serve for **tags system** (if they are organized hierarchically)	
 	* Functionality of ```CRUD``` pages provides a possibility to set up/change a position of each node in the tree to any valid position
-	* The futher work with a catalog tree is meant by using [Materialized path](https://github.com/mgrechanik/yii2-materialized-path) extension **!** [Example](#frontend-output)
-	* The index page of viewing a catalog tree assumes that **all** catalog needs to be displayed, without pagination or filtering
+	* The futher work with a category tree is meant by using [Materialized path](https://github.com/mgrechanik/yii2-materialized-path) extension **!** [Example](#frontend-output)
+	* The index page of viewing a category tree assumes that **all** category needs to be displayed, without pagination or filtering
 
 ---
 
 ## Demo <span id="demo"></span>
 
 The functionality of **backend** section will look like:
-![Functionality of catalog we get](https://raw.githubusercontent.com/mgrechanik/yii2-categories-and-tags/master/docs/images/categories.png "Catalog functionality")
+![Functionality of category we get](https://raw.githubusercontent.com/mgrechanik/yii2-categories-and-tags/master/docs/images/categories.png "Category functionality")
 	
 ---
     
@@ -59,7 +59,7 @@ to the require section of your `composer.json`
 
 #### Migrations
 
-If you do not need additional fields to catalog ```Active Record``` model ([details](#custom-ar)) then the table for [default](#default-ar) catalog
+If you do not need additional fields to category ```Active Record``` model ([details](#custom-ar)) then the table for [default](#default-ar) category
 can be created by running:
 
 ```
@@ -81,17 +81,17 @@ only **backend** pages when you set it up into your application specify the next
     ],
 ```
 
-Done. When you access ```/category``` page you will see all your catalog.
+Done. When you access ```/category``` page you will see all your category.
 
 ---
 
-## Default AR catalog model of this extension  <span id="default-ar"></span> 
+## Default AR category model of this extension  <span id="default-ar"></span> 
 
-The **required** fields for catalog model are ```id, path, level, weight ``` (`id` is the **primary key**), 
+The **required** fields for category model are ```id, path, level, weight ``` (`id` is the **primary key**), 
 they serve to saving tree position. The rest of the fields are ones you need.
 
 If you are satisfied with only one additional text field - ```name``` - then this extension provides
-[Category](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/models/Category.php) model which is set as the default catalog model of the module.
+[Category](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/models/Category.php) model which is set as the default category model of the module.
 
 The work precisely with it is shown at [demo](#demo) above.
 
@@ -100,8 +100,8 @@ The work precisely with it is shown at [demo](#demo) above.
 
 ## Using your own AR model  <span id="custom-ar"></span>   
 
-If having one additional ```name``` field [default](#default-ar) catalog model gives is not enough 
-there is a way to use your own model with fields you need which will serve as catalog model.
+If having one additional ```name``` field [default](#default-ar) category model gives is not enough 
+there is a way to use your own model with fields you need which will serve as category model.
 
 To do this you need to follow the next steps:
 
@@ -118,14 +118,14 @@ To do this you need to follow the next steps:
 
 4) If your model does not have ```name``` field you need to set up [```$indentedNameCreatorCallback```](#indented-name) module property
 
-#### B) Setting up your catalog form model <span id="custom-ar-b"></span>
+#### B) Setting up your category form model <span id="custom-ar-b"></span>
 
 AR model and form model are separated so the steps similar to **A)** need to be performed to your form model.
 
 1) Create your form model starting from [CategoryForm](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/ui/forms/backend/CategoryForm.php). 
 In the default form we added only one field - ```name``` but you need to add your own. Do not forget about inheritance from ```BaseCategoryForm```
 
-2) Set up your module to use this catalog form model by using it's ```$categoryFormModelClass``` property
+2) Set up your module to use this category form model by using it's ```$categoryFormModelClass``` property
 
 #### C) Setting up views <span id="custom-ar-c"></span>
 
@@ -140,28 +140,28 @@ The ones of them with information which vary needs to be copied, changed as need
 [Setting up](#setup) the module into application we can use it's next properties:
 
 #### ```$categoryModelClass``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Which catalog AR model class to use
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Which category AR model class to use
 
 #### ```$categoryFormModelClass``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Which catalog form model class to use
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Which category form model class to use
 
 #### ```$indentedNameCreatorCallback``` <span id="indented-name">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Callback which will create the label of the catalog item at catalog view page
-considering indent needed to show catalog as a tree
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Callback which will create the label of the category item at category view page
+considering indent needed to show category as a tree
 
 #### ```$categoryIndexView```, ```$categoryCreateView```, ```$categoryUpdateView```, ```$categoryFormView```, ```$categoryViewView``` <span id="setup-views"></span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- the corresponding **views** for module to use. 
 For it's format look into [documentation](https://www.yiiframework.com/doc/api/2.0/yii-base-view#render()-detail)
 
 #### ```$redirectToIndexAfterCreate``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to redirect to catalog view page after new element has been created.  
-```True``` by default. With ```false``` the redirect will be to catalog element view page
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to redirect to category view page after new element has been created.  
+```True``` by default. With ```false``` the redirect will be to category element view page
 
 #### ```$redirectToIndexAfterUpdate``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Similar to the previous property but for updation task
 
 #### ```$validateCategoryModel``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to validate catalog model before saving.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to validate category model before saving.  
 Default ```false``` when we consider that the validation form performes is enough
 
 #### ```$creatingSuccessMessage```, ```$updatingSuccessMessage```, ```$deletingSuccessMessage``` 
@@ -171,9 +171,9 @@ If you change them do not forget about their translations in the ```yii2category
 
 ---
 
-## Example of displaying a catalog at frontend <span id="frontend-output"></span>
+## Example of displaying a categories tree at frontend <span id="frontend-output"></span>
 
-If you need to output your catalog into any template just run:
+If you need to output your category into any template just run:
 ```php
 use mgrechanik\yiimaterializedpath\ServiceInterface;
 // This is our default category model:
