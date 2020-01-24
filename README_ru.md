@@ -1,4 +1,4 @@
-# Иерархические SEO категории (или теги) из Active Record моделей под Yii2
+# Иерархические Active Record SEO категории (или теги) под Yii2
 
 [English version](../README.md)
 
@@ -20,12 +20,12 @@
 Мы предполагаем что создавая на **frontend** страницы с выводом содержимого категории (или тега) нам для
 такой страницы категории потребуется управление ее SEO информацией.
 
-Соответственно в нашу модель SEO категории мы добавляем следующие поля:
+Соответственно в нашу AR модель SEO категории мы добавляем следующие поля:
 
 * ```name``` для обозначения названия категории
 * ```title``` для содержимого тега ```<title>```
-* ```meta_description``` для содержимого атрибута ```content``` тега ```<meta name="description">```	
-* ```meta_keywords``` для содержимого атрибута ```content``` тега ```<meta name="keywords">```	
+* ```meta_description``` для значения атрибута ```content``` тега ```<meta name="description">```	
+* ```meta_keywords``` для значения атрибута ```content``` тега ```<meta name="keywords">```	
 * ```meta_other``` для вставки любого ```html``` с метатегами, которые вам дополнительно нужны
 * ```slug``` служит для управления "хвостовиком" адреса страницы
 	
@@ -72,7 +72,7 @@ php yii migrate 1 --migrationPath=@vendor/mgrechanik/yii2-seo-categories/src/con
 
 Как говорилось [в базом модуле категорий](https://github.com/mgrechanik/yii2-categories-and-tags#goal), данный модуль следует структуре *универсального модуля* и предоставляет при этом
 только страницы **backend**-а, то при его подключении укажите следующий режим (```mode```):
-```
+```php
     'modules' => [
         'seocategory' => [
             'class' => 'mgrechanik\yii2seocategory\Module',
@@ -96,7 +96,7 @@ php yii migrate 1 --migrationPath=@vendor/mgrechanik/yii2-seo-categories/src/con
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Использовать ли поле ввода всех прочих мета тегов
 
 #### ```$useSlugField = true``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Использовать ли поле ввода "хвостовика адреса". Он предполагает быть уникальным
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Использовать ли поле ввода "хвостовика адреса". Он предполагается быть уникальным
 
 #### ```$slugPattern``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- При использовании предыдущего поля здесь указываем регулярку допустимых символов 
