@@ -48,12 +48,12 @@ The preferred way to install this extension is through [composer](http://getcomp
 
 Either run
 ```
-composer require --prefer-dist mgrechanik/yii2-catalog
+composer require --prefer-dist mgrechanik/yii2-categories-and-tags
 ```
 
 or add
 ```
-"mgrechanik/yii2-catalog" : "~1.0.0"
+"mgrechanik/yii2-categories-and-tags" : "~1.0.0"
 ```
 to the require section of your `composer.json`
 
@@ -63,7 +63,7 @@ If you do not need additional fields to catalog ```Active Record``` model ([deta
 can be created by running:
 
 ```
-php yii migrate --migrationPath=@vendor/mgrechanik/yii2-catalog/src/console/migrations
+php yii migrate --migrationPath=@vendor/mgrechanik/yii2-categories-and-tags/src/console/migrations
 ```
 
 #### Setting the module up  <span id="setup"></span>
@@ -91,7 +91,7 @@ The **required** fields for catalog model are ```id, path, level, weight ``` (`i
 they serve to saving tree position. The rest of the fields are ones you need.
 
 If you are satisfied with only one additional text field - ```name``` - then this extension provides
-[Catalog](https://github.com/mgrechanik/yii2-catalog/blob/master/src/models/Catalog.php) model which is set as the default catalog model of the module.
+[Catalog](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/models/Catalog.php) model which is set as the default catalog model of the module.
 
 The work precisely with it is shown at [demo](#demo) above.
 
@@ -107,9 +107,9 @@ To do this you need to follow the next steps:
 
 #### А) Setting up your AR model <span id="custom-ar-a"></span>
 
-1) Generate the class of your AR model starting from table created by migration similar to [Catalog model migration](https://github.com/mgrechanik/yii2-catalog/blob/master/src/console/migrations/m180908_094405_create_catalog_table.php). The main point here are [required](#default-ar) fields
+1) Generate the class of your AR model starting from table created by migration similar to [Catalog model migration](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/console/migrations/m180908_094405_create_catalog_table.php). The main point here are [required](#default-ar) fields
 
-2) Change the code of your AR model exactly like we did the same with [Catalog](https://github.com/mgrechanik/yii2-catalog/blob/master/src/models/Catalog.php) model: 
+2) Change the code of your AR model exactly like we did the same with [Catalog](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/models/Catalog.php) model: 
 * change the table name
 * make it to be inherited from ```BaseCatalog``` class
 * Set up your additional fields in ```rules(), attributeLabels()```
@@ -122,7 +122,7 @@ To do this you need to follow the next steps:
 
 AR model and form model are separated so the steps similar to **A)** need to be performed to your form model.
 
-1) Create your form model starting from [CatalogForm](https://github.com/mgrechanik/yii2-catalog/blob/master/src/ui/forms/backend/CatalogForm.php). 
+1) Create your form model starting from [CatalogForm](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/ui/forms/backend/CatalogForm.php). 
 In the default form we added only one field - ```name``` but you need to add your own. Do not forget about inheritance from ```BaseCatalogForm```
 
 2) Set up your module to use this catalog form model by using it's ```$catalogFormModelClass``` property

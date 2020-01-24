@@ -46,12 +46,12 @@
 
 Выполните
 ```
-composer require --prefer-dist mgrechanik/yii2-catalog
+composer require --prefer-dist mgrechanik/yii2-categories-and-tags
 ```
 
 или добавьте
 ```
-"mgrechanik/yii2-catalog" : "~1.0.0"
+"mgrechanik/yii2-categories-and-tags" : "~1.0.0"
 ```
 в  `require` секцию вашего `composer.json` файла.
 
@@ -61,7 +61,7 @@ composer require --prefer-dist mgrechanik/yii2-catalog
 вы можете создать выполнив:
 
 ```
-php yii migrate --migrationPath=@vendor/mgrechanik/yii2-catalog/src/console/migrations
+php yii migrate --migrationPath=@vendor/mgrechanik/yii2-categories-and-tags/src/console/migrations
 ```
 
 #### Подключение модуля  <span id="setup"></span>
@@ -89,7 +89,7 @@ php yii migrate --migrationPath=@vendor/mgrechanik/yii2-catalog/src/console/migr
 они нужны для хранения позиции в дереве. Остальные поля - уже те, которые требуются вам.
 
 Если вам достаточно только одного дополнительного текстового поля - ```name``` - то для этого в расширении имеется
-модель [Catalog](https://github.com/mgrechanik/yii2-catalog/blob/master/src/models/Catalog.php), которая установлена моделью по умолчанию данного модуля.
+модель [Catalog](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/models/Catalog.php), которая установлена моделью по умолчанию данного модуля.
 
 Именно работа с ней показана на [демо](#demo) выше.
 
@@ -105,9 +105,9 @@ php yii migrate --migrationPath=@vendor/mgrechanik/yii2-catalog/src/console/migr
 
 #### А) Настройка своей AR модели <span id="custom-ar-a"></span>
 
-1) Сгенерируйте класс вашей AR модели, из таблицы, для которой взята за основу [миграция для модели Catalog](https://github.com/mgrechanik/yii2-catalog/blob/master/src/console/migrations/m180908_094405_create_catalog_table.php), главно тут - [обязательные](#default-ar) поля
+1) Сгенерируйте класс вашей AR модели, из таблицы, для которой взята за основу [миграция для модели Catalog](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/console/migrations/m180908_094405_create_catalog_table.php), главно тут - [обязательные](#default-ar) поля
 
-2) Измените код вашей модели полностью идентично как мы сделали для [Catalog](https://github.com/mgrechanik/yii2-catalog/blob/master/src/models/Catalog.php) модели: 
+2) Измените код вашей модели полностью идентично как мы сделали для [Catalog](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/models/Catalog.php) модели: 
 * указать имя таблицы
 * указать наследование от ```BaseCatalog```
 * указать ваши дополнительные поля в ```rules(), attributeLabels()```
@@ -120,7 +120,7 @@ php yii migrate --migrationPath=@vendor/mgrechanik/yii2-catalog/src/console/migr
 
 AR модель и форма у нас не смешаны, поэтому действия похожие на **A)** должны быть произведены и над моделью формы.
 
-1) Создайте свою модель формы, взяв полностью как пример модель [CatalogForm](https://github.com/mgrechanik/yii2-catalog/blob/master/src/ui/forms/backend/CatalogForm.php). 
+1) Создайте свою модель формы, взяв полностью как пример модель [CatalogForm](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/ui/forms/backend/CatalogForm.php). 
 В ней мы добавили одно поле - ```name``` - а вы укажите ваши. Не забудьте про наследование от ```BaseCatalogForm```
 
 2) Укажите данному модулю использовать этот класс модели формы, через его св-во ```$catalogFormModelClass```
