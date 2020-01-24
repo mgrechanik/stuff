@@ -26,11 +26,11 @@
 * ```title``` для содержимого тега ```<title>```
 * ```meta_description``` для содержимого атрибута ```content``` тега ```<meta name="description">```	
 * ```meta_keywords``` для содержимого атрибута ```content``` тега ```<meta name="keywords">```	
-* ```meta_other``` для вставки любого html с метатегами, которые вам дополнительно нужны
+* ```meta_other``` для вставки любого ```html``` с метатегами, которые вам дополнительно нужны
 * ```slug``` служит для управления "хвостовиком" адреса страницы
 	
-> При этом в настройках модуля вы можете указать не использовать  
-> поля 	```meta_other``` или ```slug``` - они не будут появляться в форме создания/редактирования SEO категории
+> При этом в настройках модуля вы можете указать не использовать поля 	```meta_other```  
+> или ```slug``` - они не будут появляться в форме создания/редактирования SEO категории
 
 ---
 
@@ -47,22 +47,28 @@
 
 Выполните
 ```
-composer require --prefer-dist mgrechanik/yii2-categories-and-tags
+composer require --prefer-dist mgrechanik/yii2-seo-categories
 ```
 
 или добавьте
 ```
-"mgrechanik/yii2-categories-and-tags" : "~1.0.0"
+"mgrechanik/yii2-seo-categories" : "~1.0.0"
 ```
 в  `require` секцию вашего `composer.json` файла.
 
 #### Миграции
 
-Если вам не требуются дополнительные поля для ```Active Record``` модели категории ([подробнее](#custom-ar)), то таблицу для [дефолтной](#default-ar) категории
+Если вам требуется поле ```slug``` то таблицу и индекс для этого поля
 вы можете создать выполнив:
 
 ```
-php yii migrate --migrationPath=@vendor/mgrechanik/yii2-categories-and-tags/src/console/migrations
+php yii migrate --migrationPath=@vendor/mgrechanik/yii2-seo-categories/src/console/migrations
+```
+
+Если же поле ```slug``` вам не требуется, вам нужно выполнить только первую из миграций из папки следующим образом:
+
+```
+php yii migrate 1 --migrationPath=@vendor/mgrechanik/yii2-seo-categories/src/console/migrations
 ```
 
 #### Подключение модуля  <span id="setup"></span>
