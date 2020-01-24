@@ -13,11 +13,11 @@
 
 ## Goal <span id="goal"></span>
 
-This extension gives you a **variety** of **вариацию** [categories module](https://github.com/mgrechanik/yii2-categories-and-tags), 
+This extension gives you a **variety** of [categories module](https://github.com/mgrechanik/yii2-categories-and-tags), 
 in which the [opportunity](https://github.com/mgrechanik/yii2-categories-and-tags#custom-ar) to create any your own ```Active Record``` category models was given.
 
 We suggest that when creating pages at **frontend**  to display associated content of the category (or tag) 
-we would need to manage SEO information of such categorry pages.
+we would need to manage SEO information of such category page.
 
 Respectively we add next fields to our SEO category ```Active Record``` model:
 
@@ -25,8 +25,8 @@ Respectively we add next fields to our SEO category ```Active Record``` model:
 * ```title``` for content of ```<title>``` tag
 * ```meta_description``` for value of ```content``` attribute of ```<meta name="description">``` tag
 * ```meta_keywords``` for value of ```content``` attribute of ```<meta name="keywords">```	tag
-* ```meta_other``` to inserting any other meta tags ```html``` you may need
-* ```slug``` serves as a "slug" in the page address
+* ```meta_other``` to inserting any other ```html``` meta tags  you may need
+* ```slug``` serves as a "slug", or tail, in the page address
 	
 > With all this in module's settings you may choose not to use 	```meta_other```  
 > or ```slug``` fields and they will not appear in the web form of creating/editing SEO category
@@ -55,7 +55,7 @@ This extension comes with two migrations:
 - the first creates SEO categories table with all indexes needed
 - the secong creates unique index for ```slug``` field
 
-Yoy can run both of them:
+You can run both of them:
 
 ```
 php yii migrate --migrationPath=@vendor/mgrechanik/yii2-seo-categories/src/console/migrations
@@ -69,7 +69,7 @@ php yii migrate 1 --migrationPath=@vendor/mgrechanik/yii2-seo-categories/src/con
 
 #### Setting the module up  <span id="setup"></span>
 
-As was mentioned in [basic categories module](https://github.com/mgrechanik/yii2-categories-and-tags#goal) 
+As was mentioned in the [basic categories module](https://github.com/mgrechanik/yii2-categories-and-tags#goal), 
 this module follows the approach of *universal module*, and since it gives you
 only **backend** pages when you set it up into your application specify the next ```mode``` :
 ```php
@@ -89,7 +89,7 @@ Done. When you access ```/seocategory``` page you will see all your SEO categori
 
 ## Module settings <span id="settings"></span>
 
-[Setting up](#setup) the module into application, along with all properties of [base categories module](https://github.com/mgrechanik/yii2-categories-and-tags#settings), we can use it's next properties:
+[Setting up](#setup) the module into application, along with all properties of the [base categories module](https://github.com/mgrechanik/yii2-categories-and-tags#settings), we can use it's next properties:
 
 #### ```$useMetaOtherField = false``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to use other meta tags field
@@ -101,7 +101,7 @@ Done. When you access ```/seocategory``` page you will see all your SEO categori
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- When we use previous field in this property we set up regular expression of expected symbols 
 
 #### ```$showTitleColumnAtIndexPage = true```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to display ```title``` field in categories grid
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to display ```title``` field in the categories list grid
 
 #### ```$showSlugColumnAtIndexPage = false``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to display ```slug``` field in categories grid
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to display ```slug``` field in the categories list grid
