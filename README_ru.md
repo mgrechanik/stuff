@@ -34,12 +34,6 @@
 
 ---
 
-## Демо <span id="demo"></span>
-
-Функционал **backend** части будет выглядеть так (если вывод на английском):
-![получившийся функционал списка категорий](https://raw.githubusercontent.com/mgrechanik/yii2-categories-and-tags/master/docs/images/categories.png "Функционал дерева категорий")
-	
----
     
 ## Установка <span id="installing"></span>
 
@@ -58,14 +52,17 @@ composer require --prefer-dist mgrechanik/yii2-seo-categories
 
 #### Миграции
 
-Если вам требуется поле ```slug``` то таблицу и индекс для этого поля
-вы можете создать выполнив:
+Данное расширение идет с двумя миграциями:
+- первая создает таблицу seo каталога со всеми необходимыми индексами
+- вторая создает уникальный индекс по полю ```slug```
+
+Вы можете их обе выполнить:
 
 ```
 php yii migrate --migrationPath=@vendor/mgrechanik/yii2-seo-categories/src/console/migrations
 ```
 
-Если же поле ```slug``` вам не требуется, вам нужно выполнить только первую из миграций из папки следующим образом:
+, или если вы не используете поле ```slug``` выполните из них только первую:
 
 ```
 php yii migrate 1 --migrationPath=@vendor/mgrechanik/yii2-seo-categories/src/console/migrations
@@ -77,8 +74,8 @@ php yii migrate 1 --migrationPath=@vendor/mgrechanik/yii2-seo-categories/src/con
 только страницы **backend**-а, то при его подключении укажите следующий режим (```mode```):
 ```
     'modules' => [
-        'category' => [
-            'class' => 'mgrechanik\yii2category\Module',
+        'seocategory' => [
+            'class' => 'mgrechanik\yii2seocategory\Module',
             'mode' => 'backend',
             // Другие настройки модуля
         ],
@@ -86,57 +83,7 @@ php yii migrate 1 --migrationPath=@vendor/mgrechanik/yii2-seo-categories/src/con
     ],
 ```
 
-Все. При переходе по адресу ```/category``` вы будете видеть весь ваш древовидный список категорий.
-
----
-
-## Дефолтная AR модель категории данного расширения  <span id="default-ar"></span> 
-
-**Обязательными** полями для модели категории являются ```id, path, level, weight ``` (`id` при этом - первичный ключ), 
-они нужны для хранения позиции в дереве. Остальные поля - уже те, которые требуются вам.
-
-Если вам достаточно только одного дополнительного текстового поля - ```name``` - то для этого в расширении имеется
-модель [Category](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/models/Category.php), которая установлена моделью по умолчанию данного модуля.
-
-Именно работа с ней показана на [демо](#demo) выше.
-
-
----
-
-## Использование своей AR модели  <span id="custom-ar"></span>   
-
-Если вам недостаточно одного дополнительного поля имени, предоставленного [дефолтной](#default-ar) моделью,
-имеется возможность создать свою модель, с нужными вам полями, и указать ее как модель категории.
-
-Для того чтобы все это сделать, вам нужно проделать следующие шаги:
-
-#### А) Настройка своей AR модели <span id="custom-ar-a"></span>
-
-1) Сгенерируйте класс вашей AR модели, из таблицы, для которой взята за основу [миграция для модели Category](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/console/migrations/m180908_094405_create_category_table.php), главное тут - [обязательные](#default-ar) поля
-
-2) Измените код вашей модели полностью идентично как мы сделали для [Category](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/models/Category.php) модели: 
-* указать имя таблицы
-* указать наследование от ```BaseCategory```
-* указать ваши дополнительные поля в ```rules(), attributeLabels()```
-
-3) Укажите данному модулю использовать этот класс модели, через его св-во ```$categoryModelClass```
-
-4) Если у вашей модели нет имени ```name``` то настройте свойство модуля - [```$indentedNameCreatorCallback```](#indented-name)
-
-#### B) Настройка своей модели формы <span id="custom-ar-b"></span>
-
-AR модель и форма у нас не смешаны, поэтому действия похожие на **A)** должны быть произведены и над моделью формы.
-
-1) Создайте свою модель формы, взяв полностью как пример модель [CategoryForm](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/src/ui/forms/backend/CategoryForm.php). 
-В ней мы добавили одно поле - ```name``` - а вы укажите ваши. Не забудьте про наследование от ```BaseCategoryForm```
-
-2) Укажите данному модулю использовать этот класс модели формы, через его св-во ```$categoryFormModelClass```
-
-#### C) Настройка views <span id="custom-ar-c"></span>
-
-Данный модуль имеет возможность настроить [какие views использовать](#setup-views).
-
-Вот те из них, которые несут дополнительную информацию, скопируйте, измените под вашу модель, и укажите модулю.
+Все. При переходе по адресу ```/seocategory``` вы будете видеть весь ваш древовидный список SEO категорий.
 
 ---
 
