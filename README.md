@@ -95,7 +95,7 @@ Done. When you access ```/seocategory``` page you will see all your SEO categori
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to use ```other meta tags``` field
 
 #### ```$useSlugField = true``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to use "slug" field. It is supposed to be unique
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to use ```slug``` field. It is supposed to be unique
 
 #### ```$slugPattern``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- When we use previous field in this property we set up regular expression of expected symbols 
