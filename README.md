@@ -13,7 +13,7 @@
 
 ## Goal <span id="goal"></span>
 
-This extension gives you a **variety** of [categories module](https://github.com/mgrechanik/yii2-categories-and-tags), 
+This extension gives you a **variation** of [categories module](https://github.com/mgrechanik/yii2-categories-and-tags), 
 in which the [opportunity](https://github.com/mgrechanik/yii2-categories-and-tags#custom-ar) to create any your own ```Active Record``` category models was given.
 
 We suggest that when creating pages at **frontend**  to display associated content of the category (or tag) 
@@ -53,7 +53,7 @@ to the require section of your `composer.json`
 
 This extension comes with two migrations:
 - the first creates SEO categories table with all indexes needed
-- the secong creates unique index for ```slug``` field
+- the second creates unique index for ```slug``` field
 
 You can run both of them:
 
@@ -92,7 +92,7 @@ Done. When you access ```/seocategory``` page you will see all your SEO categori
 [Setting up](#setup) the module into application, along with all properties of the [base categories module](https://github.com/mgrechanik/yii2-categories-and-tags#settings), we can use it's next properties:
 
 #### ```$useMetaOtherField = false``` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to use other meta tags field
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to use ```other meta tags``` field
 
 #### ```$useSlugField = true``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to use "slug" field. It is supposed to be unique
