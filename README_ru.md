@@ -15,7 +15,7 @@
 ## Цель <span id="goal"></span>
 
 Данное расширение предоставляет **вариацию** [модуля категорий](https://github.com/mgrechanik/yii2-categories-and-tags), 
-в котором давалась [возможность](https://github.com/mgrechanik/yii2-categories-and-tags#custom-ar) создавать любые свои ```Active Record``` модели категорий.
+в котором давалась [возможность](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/docs/README_ru.md#custom-ar) создавать любые свои ```Active Record``` модели категорий.
 
 Мы предполагаем что создавая на **frontend** страницы с выводом содержимого категории (или тега) нам для
 такой страницы категории потребуется управление ее SEO информацией.
@@ -70,7 +70,7 @@ php yii migrate 1 --migrationPath=@vendor/mgrechanik/yii2-seo-categories/src/con
 
 #### Подключение модуля  <span id="setup"></span>
 
-Как говорилось [в базом модуле категорий](https://github.com/mgrechanik/yii2-categories-and-tags#goal), данный модуль следует структуре *универсального модуля* и предоставляет при этом
+Как говорилось [в базом модуле категорий](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/docs/README_ru.md#goal), данный модуль следует структуре *универсального модуля* и предоставляет при этом
 только страницы **backend**-а, то при его подключении укажите следующий режим (```mode```):
 ```php
     'modules' => [
@@ -89,7 +89,7 @@ php yii migrate 1 --migrationPath=@vendor/mgrechanik/yii2-seo-categories/src/con
 
 ## Настройки модуля <span id="settings"></span>
 
-[Подключяя](#setup) модуль в приложение мы, помимо всех св-в [модуля категорий](https://github.com/mgrechanik/yii2-categories-and-tags#settings),
+[Подключяя](#setup) модуль в приложение мы, помимо всех св-в [модуля категорий](https://github.com/mgrechanik/yii2-categories-and-tags/blob/master/docs/README_ru.md#settings),
  можем воспользоваться следующими его свойствами:
 
 #### ```$useMetaOtherField = false``` 
