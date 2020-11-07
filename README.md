@@ -105,5 +105,3 @@ Done. When you access ```/seocategory``` page you will see all your SEO categori
 
 #### ```$showSlugColumnAtIndexPage = false``` 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Whether to display ```slug``` field in the categories list grid
-
-check dell
