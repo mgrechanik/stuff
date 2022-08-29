@@ -8,9 +8,7 @@
 * [Демо](#demo)
 * [Установка демо](#installing)
 * [Объяснение по сборке](#explanation)
-* [Использование своей AR модели](#custom-ar)
-* [Настройки модуля](#settings)
-* [Пример вывода списка категорий на frontend](#frontend-output)
+
 
 
 
@@ -82,14 +80,80 @@ npm run serve
 
 Основные моменты такие:
 
-1) В сборке присутствует модель omega - это базовая модель, от которой наследуется весь функционал.
+1) 
+Функционал относительно vuex модуля располагается в ```src/store/имяМодуля.js```.
+
+Функционал компонентов располагается в ```src/components/crud/имяМодуля/```.
+
+2) В сборке присутствует модель omega - это базовая модель, от которой наследуется весь функционал.
 
 Соответственно модуль omega ее обслуживвает.
 
-2) Модель profile в сборке - как раз пример как можно создать свою собственную модель, отнаследовав ее от omega.
+3) Модель profile в сборке - как раз пример как можно создать свою собственную модель, отнаследовав ее от omega.
 
 ### Список шагов, необходимых для создания своей модели и модуля для нее
 
 Допустим, мы назовем нашу модель zeta.
 
-1) fff
+1) копируем ```components/crud/profile``` в ```components/crud/zeta```
+
+2) Часть касаемая vuex модуля (каталог src/store)
+
+    2.1) ```profile.js``` копируем в ```zeta.js```
+	   2.1.1) В ```zeta.js```
+	     - меняем на свои колонки фильтровки и сортировки (те, по которым в новой модели требуется)
+	2.2) добавляем в ```store/index.js```
+	```
+		import zeta from './zeta'
+		import * as ZETA_SETTINGS from '@/components/crud/zeta/_moduleSettings';
+
+		zeta.state.settings = ZETA_SETTINGS;
+
+		modules: {
+			omega,
+			profile,
+			zeta
+		}
+		```
+		
+3) меняем ```components/crud/zeta```
+
+3.1)_moduleSettings.js
+  - настройки для данной модели
+  
+3.2) EditForm.vue
+```
+  - свои колонки
+    - шаблон
+	-   data: function() {
+			return {
+				model: {
+```				
+3.3)FilterRow.vue
+```
+    - шаблон
+	-
+	data: function() {
+		return {
+			filter: {	
+```			
+3.4)GridView.vue
+  - шаблон
+
+3.5)TitleAndSortRow.vue	
+```
+   - шаблон
+   -
+	data: function() {
+		return {
+			sort: {    
+```
+3.5) Инициализацию добавить 
+  - в App.vue
+  ```
+    this.$store.dispatch("zeta/initializeAction", this.$store);    
+    this.$store.dispatch("zeta/setPageAction", 1);     
+  ```	
+  - или во вьюхе у роутера
+  
+4) Добавляем эти компоненты на нужные страницы, пример как в роутере подключили, смотри в Демо  
