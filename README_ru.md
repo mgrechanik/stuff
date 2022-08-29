@@ -95,14 +95,14 @@ npm run serve
 
 Допустим, мы назовем нашу модель zeta.
 
-1) копируем ```components/crud/profile``` в ```components/crud/zeta```
+#### копируем ```components/crud/profile``` в ```components/crud/zeta```
 
-2) Часть касаемая vuex модуля (каталог src/store)
+#### Часть касаемая vuex модуля (каталог src/store)
 
-    2.1) ```profile.js``` копируем в ```zeta.js```
-	   2.1.1) В ```zeta.js```
+    1) ```profile.js``` копируем в ```zeta.js```
+	   * В ```zeta.js```
 	     - меняем на свои колонки фильтровки и сортировки (те, по которым в новой модели требуется)
-	2.2) добавляем в ```store/index.js```
+	2) добавляем в ```store/index.js```
 	```
 		import zeta from './zeta'
 		import * as ZETA_SETTINGS from '@/components/crud/zeta/_moduleSettings';
@@ -116,7 +116,7 @@ npm run serve
 		}
 		```
 		
-3) меняем ```components/crud/zeta```
+#### меняем ```components/crud/zeta```
 
 3.1)_moduleSettings.js
   - настройки для данной модели
