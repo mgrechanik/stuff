@@ -91,18 +91,19 @@ npm run serve
 
 3) Модель profile в сборке - как раз пример как можно создать свою собственную модель, отнаследовав ее от omega.
 
+
 ### Список шагов, необходимых для создания своей модели и модуля для нее
 
 Допустим, мы назовем нашу модель zeta.
 
-#### копируем ```components/crud/profile``` в ```components/crud/zeta```
+1) копируем ```components/crud/profile``` в ```components/crud/zeta```
 
-#### Часть касаемая vuex модуля (каталог src/store)
+2) Часть касаемая vuex модуля (каталог src/store)
 
-    1) ```profile.js``` копируем в ```zeta.js```
+    - ```profile.js``` копируем в ```zeta.js```
 	   * В ```zeta.js```
 	     - меняем на свои колонки фильтровки и сортировки (те, по которым в новой модели требуется)
-	2) добавляем в ```store/index.js```
+	- добавляем в ```store/index.js```
 	```
 		import zeta from './zeta'
 		import * as ZETA_SETTINGS from '@/components/crud/zeta/_moduleSettings';
@@ -116,31 +117,34 @@ npm run serve
 		}
 		```
 		
-#### меняем ```components/crud/zeta```
+3) меняем ```components/crud/zeta```
 
-3.1)_moduleSettings.js
+- ```_moduleSettings.js```
   - настройки для данной модели
   
-3.2) EditForm.vue
+- ```EditForm.vue```
 ```
   - свои колонки
     - шаблон
 	-   data: function() {
 			return {
 				model: {
-```				
-3.3)FilterRow.vue
+```		
+		
+- ```FilterRow.vue```
 ```
     - шаблон
 	-
 	data: function() {
 		return {
 			filter: {	
-```			
-3.4)GridView.vue
+```	
+
+		
+- ```GridView.vue```
   - шаблон
 
-3.5)TitleAndSortRow.vue	
+-```TitleAndSortRow.vue```
 ```
    - шаблон
    -
@@ -148,7 +152,8 @@ npm run serve
 		return {
 			sort: {    
 ```
-3.5) Инициализацию добавить 
+
+- Инициализацию добавить 
   - в App.vue
   ```
     this.$store.dispatch("zeta/initializeAction", this.$store);    
