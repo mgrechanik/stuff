@@ -46,6 +46,10 @@
 
 Клонируйте репозитарий
 
+```
+todo
+```
+
 Выполните
 ```
 npm install
@@ -63,6 +67,7 @@ json-server --watch ./db/crud_db.json
   http://localhost:3000/omegas
   http://localhost:3000/profiles
 ```
+Если у вас адреса будут другие , настройте их в ```_moduleSettings.js``` у каждой модели, подробности ниже.
 
 Запускайте приложение
 
@@ -117,7 +122,7 @@ npm run serve
 		}
 		```
 		
-3) меняем ```components/crud/zeta```
+3) меняем в каталоге ```components/crud/zeta```
 
 - ```_moduleSettings.js```
   - настройки для данной модели
@@ -126,7 +131,7 @@ npm run serve
 ```
   - свои колонки
     - шаблон
-	-   data: function() {
+	- data: function() {
 			return {
 				model: {
 ```		
