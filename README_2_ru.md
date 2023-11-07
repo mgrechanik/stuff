@@ -46,10 +46,10 @@
 ## Демо <span id="demo"></span>
 
 Определение точек по стратегии ```DifferentColorsStrategy```:
-![получившийся функционал списка категорий](https://raw.githubusercontent.com/mgrechanik/yii2-categories-and-tags/master/docs/images/categories.png "Определение точек на изображении")
+![получившийся функционал списка категорий]( "Определение точек на изображении")
 
 Определение точек по стратегии ```ChoosenColorStrategy```:
-![получившийся функционал списка категорий](https://raw.githubusercontent.com/mgrechanik/yii2-categories-and-tags/master/docs/images/categories.png "Определение точек на изображении карты США")
+![получившийся функционал списка категорий]( "Определение точек на изображении карты США")
 	
 ---
     
