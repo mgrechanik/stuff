@@ -101,16 +101,15 @@ try {
 #### Поиск по стратегии ```ChoosenColorStrategy```
 ```php
 try {
-	
-	$searcher = new \mgrechanik\imagepointssearcher\Searcher(
-	    './images/usa.jpg',
-		new \mgrechanik\imagepointssearcher\ChoosenColorStrategy(60, 132, 253)
-	);
-	$found = $searcher->run();
-	print 'Найдено - ' . $found;
+  $searcher = new \mgrechanik\imagepointssearcher\Searcher(
+    './images/usa.jpg',
+    new \mgrechanik\imagepointssearcher\ChoosenColorStrategy(60, 132, 253)
+  );
+  $found = $searcher->run();
+  print 'Найдено - ' . $found;
 
-	$points = $searcher->getPoints();
-	var_dump($points);
+  $points = $searcher->getPoints();
+  var_dump($points);
 } catch (Exception $e) {
 	
 }
