@@ -1,38 +1,39 @@
-# Поисковик точек на изображении
+# Searching for points on image
 
-[English version](../README.md)
+[Русская версия](docs/README_ru.md)
 
 ## Содержание
 
-* [Цель](#goal)
-* [Демо](#demo)
-* [Установка](#installing)
-* [Поиск точек](#search)
-* [Отображение результата поиска](#display-result)
+* [Goal](#goal)
+* [Demo](#demo)
+* [Installing](#installing)
+* [Search for points](#search)
+* [Display search result](#display-result)
 
 
 ---
 
-## Цель <span id="goal"></span>
+## Goal <span id="goal"></span>
 
-Данная библиотека позволяет на изображении (картинке ```jpg```) узнать координаты точек, которые вы ищете.
+This  library allows to find the coordinates of the points you are looking for on image (```jpg``` format).
 
-Точка это набор рядом стоящих пикселов выбранного цвета.
+The point is the set of nearby pixels of choosen color.
 
-Для примера если вы на изображении нарисовали граф, мы узнаем его вершины.
+For example when you draw a graph on image, we will find it's vertices.
 
-Для определения, что является точкой, а что нет, из коробки идут две стратегии.
+Out of the box we have two strategies to determite our points.
 
-1. ```DifferentColorsStrategy``` - когда точка определяется тем, что отличается от цвета фона. Работает по умолчанию. См Демо. рис1.
-2. ```ChoosenColorStrategy``` - когда точка определяется конкретно ее цветом.  См Демо. рис2.
+1. ```DifferentColorsStrategy``` - when the point is different from background color. Default behavior. See Demo, picture 1.
+2. ```ChoosenColorStrategy``` - when point is defined by it's exact color.  See Demo, picture 2.
 
 Вы можете создать свою стратегию поиска и использовать ее.
+You can create your own strategy and use it.
 
-Точки могут быть разного размера, чтобы были видны, а не 1px, и чтобы их нашло как одну, используется параметр ```Searcher::$margin```.
+Points could be of different size, so they could be easily seen, not just 1px size. We use parameter ```Searcher::$margin``` to determine all those pixels as one point.
 
-Результатом работы поисковика будет массив точек, представленных их X и Y координатами.
+The result of the search work is an array of points, represented by their X and Y coordinates.
 
-В поставке идет также ```ImageResult```, который позволяет создать изображение результата поиска:
+We also supply ```ImageResult```, который позволяет создать изображение результата поиска:
 - Найденным точкам можно проставить надписи
 - Границы найденных точек можно обвести, чтобы понятней было как происходил поиск
 - Между точками можно проложить путь из линий
