@@ -15,18 +15,17 @@
 
 ## Goal <span id="goal"></span>
 
-This  library allows to find the coordinates of the points you are looking for on image (```jpg``` format).
+This  library allows to find the coordinates of the points you are looking for on an image (```jpg``` format).
 
 The point is the set of nearby pixels of choosen color.
 
-For example when you draw a graph on image, we will find it's vertices.
+For example when you draw a graph on the image, we will find it's vertices.
 
 Out of the box we have two strategies to determite our points.
 
 1. ```DifferentColorsStrategy``` - when the point is different from background color. Default behavior. See Demo, picture 1.
 2. ```ChoosenColorStrategy``` - when point is defined by it's exact color.  See Demo, picture 2.
 
-Вы можете создать свою стратегию поиска и использовать ее.
 You can create your own strategy and use it.
 
 Points could be of different size, so they could be easily seen, not just 1px size. We use parameter ```Searcher::$margin``` to determine all those pixels as one point.
@@ -57,7 +56,7 @@ Determine points with ```ChoosenColorStrategy``` strategy, **Picture 2**:
 
 #### Installing through composer:
 
-The preferred way to install this extension is through composer.
+The preferred way to install this library is through composer.
 
 Either run
 ```
@@ -82,8 +81,8 @@ try {
   $searcher = new \mgrechanik\imagepointssearcher\Searcher(
     './images/graph.jpg'
   );
-  $found = $searcher->run();
-  print 'Found - ' . $found;
+  $count = $searcher->run();
+  print 'Found - ' . $count;
   $points = $searcher->getPoints();
   var_dump($points);
 } catch (Exception $e) {
@@ -106,8 +105,8 @@ try {
     './images/usa.jpg',
     new \mgrechanik\imagepointssearcher\ChoosenColorStrategy(60, 132, 253)
   );
-  $found = $searcher->run();
-  print 'Found - ' . $found;
+  $count = $searcher->run();
+  print 'Found - ' . $count;
   $points = $searcher->getPoints();
   var_dump($points);
 } catch (Exception $e) {
@@ -130,7 +129,7 @@ $imageResult->setMarginsColor(255, 106, 0);
 
 // Draw default labels
 $imageResult->drawLabels();
-// Draw labels with text we want
+// Draw labels with the text we want
 $imageResult->drawLabels(function($key, $point) { return "{$point['x']},{$point['y']}";});
 
 // Draw borders of the points we found
