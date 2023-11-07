@@ -44,9 +44,11 @@
 
 Определение точек по стратегии ```DifferentColorsStrategy```:
 ![Определение точек на изображении](https://raw.githubusercontent.com/mgrechanik/yii2-categories-and-tags/master/docs/images/categories.png "Определение точек на изображении")
+<center>Рисунок 1</center>
 
 Определение точек по стратегии ```ChoosenColorStrategy```:
-![Определение точек на изображении]( "Определение точек на изображении карты США")
+![Определение точек на изображении](https://raw.githubusercontent.com/mgrechanik/yii2-categories-and-tags/master/docs/images/categories.png "Определение точек на изображении карты США")
+<center>Рисунок 2</center>
 	
 ---
     
