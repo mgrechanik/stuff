@@ -33,71 +33,73 @@ Points could be of different size, so they could be easily seen, not just 1px si
 
 The result of the search work is an array of points, represented by their X and Y coordinates.
 
-We also supply ```ImageResult```, который позволяет создать изображение результата поиска:
-- Найденным точкам можно проставить надписи
-- Границы найденных точек можно обвести, чтобы понятней было как происходил поиск
-- Между точками можно проложить путь из линий
+We also give you ```ImageResult```, who creates the image of the search result:
+- We can add labels to points we found
+- The borders of the points we found could be shown to better understand search process
+- We could draw a path between points
 
 
 ---
 
-## Демо <span id="demo"></span>
+## Demo <span id="demo"></span>
 
-Определение точек по стратегии ```DifferentColorsStrategy``` , **Рисунок 1**:
-![Определение точек на изображении](https://raw.githubusercontent.com/mgrechanik/yii2-categories-and-tags/master/docs/images/categories.png "Определение точек на изображении")
+Determine points with ```DifferentColorsStrategy``` strategy , **Picture 1**:
+![Determine points on image](https://raw.githubusercontent.com/mgrechanik/yii2-categories-and-tags/master/docs/images/categories.png "Determine points on image")
 
 
-Определение точек по стратегии ```ChoosenColorStrategy``` , **Рисунок 2**:
-![Определение точек на изображении](https://raw.githubusercontent.com/mgrechanik/yii2-categories-and-tags/master/docs/images/categories.png "Определение точек на изображении карты США")
+Determine points with ```ChoosenColorStrategy``` strategy, **Picture 2**:
+![Determine points on image](https://raw.githubusercontent.com/mgrechanik/yii2-categories-and-tags/master/docs/images/categories.png "Determine points on USA map image")
 
 	
 ---
     
-## Установка <span id="installing"></span>
+## Installing <span id="installing"></span>
 
-#### Установка через composer:
+#### Installing through composer:
 
-Выполните
+The preferred way to install this extension is through composer.
+
+Either run
 ```
 composer require --prefer-dist mgrechanik/yii2-categories-and-tags
 ```
 
-или добавьте
+or add
 ```
 "mgrechanik/yii2-categories-and-tags" : "~1.0.0"
 ```
-в  `require` секцию вашего `composer.json` файла.
+to the require section of your `composer.json`.
 
 
 
 ---
 
-## Поиск точек  <span id="search"></span> 
+## Search for points  <span id="search"></span> 
 
-#### Поиск по стратегии ```DifferentColorsStrategy```
+#### Search for points with ```DifferentColorsStrategy``` strategy
 ```php
 try {
   $searcher = new \mgrechanik\imagepointssearcher\Searcher(
     './images/graph.jpg'
   );
   $found = $searcher->run();
-  print 'Найдено - ' . $found;
+  print 'Found - ' . $found;
   $points = $searcher->getPoints();
   var_dump($points);
 } catch (Exception $e) {
 	
 }
 ```
-Результат будет, например:
+The result will be like this:
 ```
-Найдено - 2
+Found - 2
 [
 	['x' => 10, 'y' => 10],
 	['x' => 80, 'y' => 80],
 ]
 ```
 
-#### Поиск по стратегии ```ChoosenColorStrategy```
+#### Search for points with ```ChoosenColorStrategy``` strategy
 ```php
 try {
   $searcher = new \mgrechanik\imagepointssearcher\Searcher(
@@ -105,7 +107,7 @@ try {
     new \mgrechanik\imagepointssearcher\ChoosenColorStrategy(60, 132, 253)
   );
   $found = $searcher->run();
-  print 'Найдено - ' . $found;
+  print 'Found - ' . $found;
   $points = $searcher->getPoints();
   var_dump($points);
 } catch (Exception $e) {
@@ -115,28 +117,28 @@ try {
 
 ---
 
-## Отображение результата поиска  <span id="display-result"></span>   
+## Display search result  <span id="display-result"></span>   
 
 ```php
 $imageResult = new \mgrechanik\imagepointssearcher\ImageResult($searcher);
 
-// Можно самому задать цвета
+// We can set colors
 $imageResult->setLabelsColor(1, 14, 230);
 $imageResult->setLinesColor(255, 33, 73);
 $imageResult->setMarginsColor(255, 106, 0);
 
 
-// Рисуем надписи по умолчанию
+// Draw default labels
 $imageResult->drawLabels();
-//Рисуем надписи, сами определяя текст
+// Draw labels with text we want
 $imageResult->drawLabels(function($key, $point) { return "{$point['x']},{$point['y']}";});
 
-// Рисуем границы найденных точек
+// Draw borders of the points we found
 $imageResult->drawMargins();
 
-// Рисуем путь между точками
+// Draw the path between points
 $imageResult->drawPath([2,9,20,28,41,48,44]);
 
-// Сохраняем результат в виде изображения. См. Демо.
+// Save the result as the image. See Demo.
 $imageResult->save('./images/result.jpg');
 ```
