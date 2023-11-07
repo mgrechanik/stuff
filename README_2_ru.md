@@ -137,5 +137,5 @@ $imageResult->drawMargins();
 $imageResult->drawPath([2,9,20,28,41,48,44]);
 
 // Сохраняем результат в виде изображения. См. Демо.
-$imageResult->save('images/result.jpg');
+$imageResult->save('./images/result.jpg');
 ```
