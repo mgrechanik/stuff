@@ -27,7 +27,7 @@
 Для определения, что является точкой, а что нет, из коробки идут две стратегии
 
 1. ```DifferentColorsStrategy``` - когда точка определяется тем, что отличается от цвета фона. Работает по умолчанию. См Демо. рис1.
-2. ```ChoosenColorStrategy``` - когда точка определяется конкретно ее цветом  См Демо. рис2.
+2. ```ChoosenColorStrategy``` - когда точка определяется конкретно ее цветом.  См Демо. рис2.
 
 Вы можете создать свою стратегию поиска и использовать ее.
 
@@ -37,7 +37,7 @@
 
 В поставке идет также ```ImageResult```, который позволяет создать изображение результата поиска:
 - Найденным точкам можно проставить надписи
-- Границы найденных точек можно обвести, чтобы понятней было как происходил поиска
+- Границы найденных точек можно обвести, чтобы понятней было как происходил поиск
 - Между точками можно проложить путь из линий
 
 
@@ -77,15 +77,14 @@ composer require --prefer-dist mgrechanik/yii2-categories-and-tags
 #### Поиск по стратегии ```DifferentColorsStrategy```
 ```php
 try {
-	
-	$searcher = new \mgrechanik\imagepointssearcher\Searcher(
-	    './images/graph.jpg'
-	);
-	$found = $searcher->run();
-	print 'Найдено - ' . $found;
+$searcher = new \mgrechanik\imagepointssearcher\Searcher(
+  './images/graph.jpg'
+);
+$found = $searcher->run();
+print 'Найдено - ' . $found;
 
-	$points = $searcher->getPoints();
-	var_dump($points);
+$points = $searcher->getPoints();
+var_dump($points);
 } catch (Exception $e) {
 	
 }
