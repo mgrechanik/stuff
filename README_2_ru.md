@@ -42,11 +42,11 @@
 
 ## Демо <span id="demo"></span>
 
-Определение точек по стратегии ```DifferentColorsStrategy``` **Рисунок 1**:
+Определение точек по стратегии ```DifferentColorsStrategy``` , **Рисунок 1**:
 ![Определение точек на изображении](https://raw.githubusercontent.com/mgrechanik/yii2-categories-and-tags/master/docs/images/categories.png "Определение точек на изображении")
 
 
-Определение точек по стратегии ```ChoosenColorStrategy``` **Рисунок 2**:
+Определение точек по стратегии ```ChoosenColorStrategy``` , **Рисунок 2**:
 ![Определение точек на изображении](https://raw.githubusercontent.com/mgrechanik/yii2-categories-and-tags/master/docs/images/categories.png "Определение точек на изображении карты США")
 
 	
@@ -81,7 +81,6 @@ try {
   );
   $found = $searcher->run();
   print 'Найдено - ' . $found;
-
   $points = $searcher->getPoints();
   var_dump($points);
 } catch (Exception $e) {
@@ -106,7 +105,6 @@ try {
   );
   $found = $searcher->run();
   print 'Найдено - ' . $found;
-
   $points = $searcher->getPoints();
   var_dump($points);
 } catch (Exception $e) {
