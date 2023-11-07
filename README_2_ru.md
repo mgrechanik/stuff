@@ -77,14 +77,14 @@ composer require --prefer-dist mgrechanik/yii2-categories-and-tags
 #### Поиск по стратегии ```DifferentColorsStrategy```
 ```php
 try {
-$searcher = new \mgrechanik\imagepointssearcher\Searcher(
-  './images/graph.jpg'
-);
-$found = $searcher->run();
-print 'Найдено - ' . $found;
+  $searcher = new \mgrechanik\imagepointssearcher\Searcher(
+    './images/graph.jpg'
+  );
+  $found = $searcher->run();
+  print 'Найдено - ' . $found;
 
-$points = $searcher->getPoints();
-var_dump($points);
+  $points = $searcher->getPoints();
+  var_dump($points);
 } catch (Exception $e) {
 	
 }
