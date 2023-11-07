@@ -30,7 +30,7 @@
 
 Точки могут быть разного размера, чтобы были видны, а не 1px, и чтобы их нашло как одну, используется параметр ```Searcher::$margin```.
 
-Результатом **работы** поисковика будет массив точек, представленных их X и Y координатами.
+Результатом работы поисковика будет массив точек, представленных их X и Y координатами.
 
 В поставке идет также ```ImageResult```, который позволяет создать изображение результата поиска:
 - Найденным точкам можно проставить надписи
@@ -42,15 +42,13 @@
 
 ## Демо <span id="demo"></span>
 
-Определение точек по стратегии ```DifferentColorsStrategy```:
+Определение точек по стратегии ```DifferentColorsStrategy``` **Рисунок 1**:
 ![Определение точек на изображении](https://raw.githubusercontent.com/mgrechanik/yii2-categories-and-tags/master/docs/images/categories.png "Определение точек на изображении")
 
-<p style="text-align: center;">**Рисунок 1**</p>
 
-Определение точек по стратегии ```ChoosenColorStrategy```:
+Определение точек по стратегии ```ChoosenColorStrategy``` **Рисунок 2**:
 ![Определение точек на изображении](https://raw.githubusercontent.com/mgrechanik/yii2-categories-and-tags/master/docs/images/categories.png "Определение точек на изображении карты США")
 
-<p style="text-align: center;">**Рисунок 2**</p>
 	
 ---
     
