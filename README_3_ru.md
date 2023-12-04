@@ -257,11 +257,22 @@ $manager->run();
 Доступные настройки:
 
 - Установим величину, когда участок считается непроходимым  
-```setClosedPathValue(int $value)```
+```->setClosedPathValue(int $value)```
 
-- Установим сами число муравьев
-```setM(int $m)```
+- Установим число муравьев  
+```->setM(int $m)```
 
+- Установим число муравьев как процент от числа нод. По умолчанию (40%)  
+```->setMPercent(int $mPercent)```
+
+- Устанавливаем коэффициенты для формулы  
+```php
+->setAlpha(float $alpha);
+->setBeta(float $beta);
+->setP(float $p);
+->setC(float $c);
+->setQ(int $q);
+```
 
 ---
 
