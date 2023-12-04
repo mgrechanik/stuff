@@ -7,7 +7,7 @@
 * [Введение](#introducion)
 * [Демо](#demo)
 * [Установка](#installing)
-* [Поиск путей](#search)
+* [Использование](#use)
 * [Настройка](#settings)
 * [Производительность](#performance)
 * [TSPLIB95](#tsplib95)
@@ -20,7 +20,7 @@
 
 Муравьиный алгоритм (ACO) позволяет находить хорошие пути на графе.
 
-Решаемая задача может быть как "Задачей коммивояжера", так и "О кратчайшем пути", или путем с некими ограничениями(Constrained Shortest Path First).  
+Решаемая задача может быть как "Задачей коммивояжера", так и "О кратчайшем пути", или путем с некими ограничениями (Constrained Shortest Path First).  
 Первые две задачи решены в данной библиотеке.
 
 Существует множество стратегий и вариаций классического ACO алгоритма.  
@@ -69,49 +69,121 @@ composer require --prefer-dist mgrechanik/yii2-categories-and-tags
 
 ---
 
-## Поиск точек  <span id="search"></span> 
+## Использование  <span id="use"></span> 
 
-#### Поиск по стратегии ```DifferentColorsStrategy```
+#### Решаем Задачу Коммивояжера классическим ACO, данные поступают из матрицы смежности
 ```php
-try {
-  $searcher = new \mgrechanik\imagepointssearcher\Searcher(
-    './images/graph.jpg'
-  );
-  $count = $searcher->run();
-  print 'Найдено - ' . $count;
-  $points = $searcher->getPoints();
-  var_dump($points);
-} catch (Exception $e) {
-	
-}
-```
-Результат будет, например:
-```
-Найдено - 2
-[
-	['x' => 10, 'y' => 10],
-	['x' => 80, 'y' => 80],
-]
-```
+use mgrechanik\aco\Manager;
 
-#### Поиск по стратегии ```ChoosenColorStrategy```
+$manager = new Manager();
+$matrix = [
+            [ 0, 8, 4, 11],
+            [ 8, 0, 9, 5 ],
+            [ 4, 9, 0, 8 ],
+            [11, 5, 8, 0 ]
+        ];
+$manager->setMatrix($matrix);
+$distance = $manager->run(20);
+var_dump('Distance=' . $distance);
+var_dump($manager->getInnerPath())
+```
+Получим:
 ```php
-try {
-  $searcher = new \mgrechanik\imagepointssearcher\Searcher(
-    './images/usa.jpg',
-    new \mgrechanik\imagepointssearcher\ChoosenColorStrategy(60, 132, 253)
-  );
-  $count = $searcher->run();
-  print 'Найдено - ' . $count;
-  $points = $searcher->getPoints();
-  var_dump($points);
-} catch (Exception $e) {
-	
-}
+25
+Array
+(
+    [0] => 0
+    [1] => 1
+    [2] => 3
+    [3] => 2
+    [4] => 0
+) 
+```
+
+#### Резаем задачу "О кратчайшем пути", классическим ACO, данные поступают из матрицы смежности
+
+```php
+use mgrechanik\aco\Manager;
+use mgrechanik\aco\SppTask;
+
+$manager = new Manager();
+$matrix = [
+            [ 0 , 8, 4, 100],
+            [ 8 , 0, 9, 5  ],
+            [ 4 , 9, 0, 8  ],
+            [100, 5, 8, 0  ]
+        ];
+$manager->setMatrix($matrix);   
+$finder = $manager->getFinder();
+// increase amount of ants to six
+$finder->setM(6);
+$finder->setTask(new SppTask(0,3));
+$distance = $manager->run(50);
+var_dump('Distance=' . $distance);
+var_dump($manager->getInnerPath())
+```
+Получим:
+```php
+12
+
+Array
+(
+    [0] => 0
+    [1] => 2
+    [2] => 3
+)
+// for comparison, the direct path [0, 3] is closed by big distance and distance of path [0, 1, 3] is 13
+```
+
+#### Загрузка данных в виде списка городов
+```php
+use mgrechanik\aco\Manager;
+use mgrechanik\aco\City;
+
+$cities = [new City(10,10), new City(50,50), new City(10,50), new City(60,10)];
+$manager = new Manager();
+$manager->setCities(...$cities);
 ```
 
 
+#### Загрузка данных в виде матрицы смежности
+```php
+use mgrechanik\aco\Manager;
 
+$matrix = [
+            [ 0, 8, 4, 11],
+            [ 8, 0, 9, 5 ],
+            [ 4, 9, 0, 8 ] ,
+            [11, 5, 8, 0 ]
+        ];
+$manager = new Manager();
+$manager->setMatrix($matrix);
+```
+
+#### Используем элитный поисковик
+
+```php
+$finder = new \mgrechanik\aco\elitist\Finder();
+$manager = new Manager(finder : $finder);
+//...
+```
+
+#### Смотрим историю работы
+```php
+use mgrechanik\aco\Manager;
+
+$matrix = [
+            [ 0, 8, 4, 11],
+            [ 8, 0, 9, 5 ],
+            [ 4, 9, 0, 8 ] ,
+            [11, 5, 8, 0 ]
+        ];
+$manager = new Manager();
+$finder = $manager->getFinder();
+$manager->setMatrix($matrix);
+$manager->run();
+var_dump($finder->getHistory());
+```
 
 ---
 
@@ -155,6 +227,7 @@ Distance=7542
 Здесь мы использовали поисковик на основе алгоритма с использования элитных муравьев. Он на практике дает лучшие результаты, чем классический.
 
 Алгоритм вероятностный, каждый раз муравьи будут путешествовать по другому. И очень многое зависит от кол-ва нод, муравьев, настройки всех коэффициентов и параметров, участвующих в формулах.
+
 
 ---
 
