@@ -90,6 +90,7 @@ var_dump($manager->getInnerPath())
 Получим:
 ```php
 25
+
 Array
 (
     [0] => 0
@@ -184,6 +185,49 @@ $manager->setMatrix($matrix);
 $manager->run();
 var_dump($finder->getHistory());
 ```
+
+#### Редактируем матрицу смежности
+
+```php
+// делаем данный участок непроходимым
+$manager->updateMatrix(1, 0, 1000000);
+```
+
+#### Грузим список городов из картинки
+
+При использовании [данной библиотеке](https://github.com/mgrechanik/image-points-searcher) мы можем загрузить список городов из картинки, и результат поиска отобразить на результирующей картинке. Смотри для примера [Demo](#demo "картинки на демо, получены этим способом").   
+Подробнее смотрите в описании к той библиотеке, но вкратце - на белом холсте отметьте кружочками диаметром 10 px, вершины графа, и используйте в коде ниже эту картинку.
+
+```php
+use mgrechanik\aco\Manager;
+
+try {
+	
+    $searcher = new \mgrechanik\imagepointssearcher\Searcher(
+        './images/your_image.jpg',
+    );
+    $found = $searcher->run();    
+    $points = $searcher->getPoints();
+    $cities = [];
+    foreach ($points as $key => $point) {
+        $cities[] = new City($point['x'], $point['y']);
+    }    
+    $manager = new Manager();
+    $manager->setCities(...$cities);
+    if ($res = $manager->run()) {
+        $innerPath = $manager->getInnerPath();
+        $imageResult = new \mgrechanik\imagepointssearcher\ImageResult($searcher);
+        $imageResult->drawLabels();
+        $imageResult->drawMargins();
+        $imageResult->drawPath($innerPath);
+        $imageResult->save('./images/result.jpg');
+    }
+  
+} catch (Exception $e) {
+    //
+}
+```
+
 
 ---
 
