@@ -83,13 +83,14 @@ Manager::__construct(DistanceInterface $distanceStrategy = null, AFinder $finder
 ```php
 $manager->setMatrix(array $matrix, int $nameStart = 0)
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- $nameStart - с какого номера именовать ноды, для их внешнего имени-алиаса
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- $nameStart - с какого номера именовать алиас имени ноды, для их внешнего имени-алиаса
 
 3) **Загрузка данных в виде списка городов**
 ```php
 $manager->setCities(City ...$cities)
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Данный список городов будет преобразован в матрицу смежности, расстояния вычислены по указанной Менеджеру стратегии
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Данный список городов будет преобразован в матрицу смежности, расстояния вычислены по указанной Менеджеру стратегии.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Если у города задано свойство ```name``` - оно станет его алиасом имени
 
 4) **Изменение матрицы смежности**
 ```php
@@ -111,6 +112,12 @@ $path = $manager->getInnerPath()
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Найденный путь из номеров нод.   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Все ноды внутри именуются числами от 0 до N-1, где N - кол-во нод.  
 
+7) **Получение найденного пути из алиасов**
+```php
+$path = $manager->getNamedPath()
+```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Найденный путь из алиасов имен нод, если вы их задавили.   
+
 ### Примеры
 
 #### Решаем Задачу Коммивояжера классическим ACO
@@ -131,7 +138,7 @@ var_dump($manager->getInnerPath())
 ```
 Получим:
 ```php
-25
+Distance=25
 
 Array
 (
@@ -167,7 +174,7 @@ var_dump($manager->getInnerPath())
 ```
 Получим:
 ```php
-12
+Distance=12
 
 Array
 (
