@@ -49,20 +49,22 @@
 	
 ---
     
-## Установка <span id="installing"></span>
+## Installing <span id="installing"></span>
 
-#### Установка через composer:
+#### Installing through composer::
 
-Выполните
+The preferred way to install this library is through composer.
+
+Either run
 ```
 composer require --prefer-dist mgrechanik/ant-colony-optimization
 ```
 
-или добавьте
+or add
 ```
 "mgrechanik/ant-colony-optimization" : "~1.0.0"
 ```
-в  `require` секцию вашего `composer.json` файла.
+to the require section of your `composer.json`.
 
 
 
@@ -413,20 +415,20 @@ $manager->setMatrix($matrix, 1);
 
 ## Terminology  <span id="terminology"></span>   
 
-#### ```ACO``` - Муравьиный алгоритм (Ant colony optimization algorithm)
+#### ```ACO``` - Ant colony optimization algorithm
 
-#### ```Nodes``` - Ноды, или узлы, или вершины графа. Или города. Муравьи путешествуют между ними
+#### ```Nodes``` - Nodes or vertices or cities. Ants travel between them.
 
-#### ```Adjacency Matrix``` - Матрица смежности, задает расстояния между узлами графа. Это базовая структура, с которой начинает работать алгоритм.
-Если граф представлен как ```Города``` с координатами, то эта информация сначала переводится в матрицу смежности
+#### ```Adjacency Matrix``` - Adjacency Matrix sets the distances between graph nodes. It is a basic structure our algorithm starts work with.
+When graph is loaded like ```Cities``` with their coordinated, this information will be converted to Adjacency Matrix
 
-#### ```Classic Finder``` - Поисковик, реализующий Классическую разновидность ACO алгоритма
+#### ```Classic Finder``` - Finder who implements Classic ACO algorithm
 
-#### ```Elitist Finder``` - Поисковик, реализующий алгоритм ACO с использованием элитных муравьев
+#### ```Elitist Finder``` - Finder who implements ACO algorithm when we use elitist ants
 
-#### ```Ant``` - муравей, рабочий юнит, который двигается по графу и ищет пути
+#### ```Ant``` - ant, working unit, who move through graph searching for paths
 
-#### ```Task``` - Задача, решаемая на графе. Например это может быть ```"Задача коммивояжера"```. Или задача ```"О кратчайшем пути"```. Или другая.
+#### ```Task``` - Task we are solving on graph. For example it could be  ```"Travelling salesman problem"```. or ```"Shortest path problem"```. Or other.
 
 #### ```Manager``` - Менеджер, задача которого, сформировать Матрицу смежности, и передать ```Поисковику``` выполнение выбранной ```Задачи```.
 
