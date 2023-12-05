@@ -106,7 +106,8 @@ Array
 use mgrechanik\aco\Manager;
 use mgrechanik\aco\SppTask;
 
-$manager = new Manager();
+$task = new SppTask(0,3);
+$manager = new Manager(task : $task);
 $matrix = [
             [ 0 , 8, 4, 100],
             [ 8 , 0, 9, 5  ],
@@ -117,7 +118,6 @@ $manager->setMatrix($matrix);
 $finder = $manager->getFinder();
 // increase amount of ants to six
 $finder->setM(6);
-$finder->setTask(new SppTask(0,3));
 $distance = $manager->run(50);
 var_dump('Distance=' . $distance);
 var_dump($manager->getInnerPath())
