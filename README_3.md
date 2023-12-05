@@ -18,7 +18,7 @@
 
 ## Introdution <span id="introducion"></span>
 
-Ant colony optimization is a probabilistic technique for solving computational problems which can be reduced to finding good paths through graphs (from Wikipedia).
+The Ant colony optimization is a probabilistic technique for solving computational problems which can be reduced to finding good paths through graphs (from Wikipedia).
 
 The task we are solving could be either "Travelling salesman problem" or "Shortest path problem", or Constrained Shortest Path First, etc.
 Two first tasks are solved within this library.
