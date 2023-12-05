@@ -242,20 +242,22 @@ try {
         './images/your_image.jpg',
     );
     $found = $searcher->run();    
-    $points = $searcher->getPoints();
-    $cities = [];
-    foreach ($points as $key => $point) {
-        $cities[] = new City($point['x'], $point['y']);
-    }    
-    $manager = new Manager();
-    $manager->setCities(...$cities);
-    if ($res = $manager->run()) {
-        $innerPath = $manager->getInnerPath();
-        $imageResult = new \mgrechanik\imagepointssearcher\ImageResult($searcher);
-        $imageResult->drawLabels();
-        $imageResult->drawMargins();
-        $imageResult->drawPath($innerPath);
-        $imageResult->save('./images/result.jpg');
+    if ($found > 1) {
+        $points = $searcher->getPoints();
+        $cities = [];
+        foreach ($points as $key => $point) {
+            $cities[] = new City($point['x'], $point['y']);
+        }    
+        $manager = new Manager();
+        $manager->setCities(...$cities);
+        if ($res = $manager->run()) {
+            $innerPath = $manager->getInnerPath();
+            $imageResult = new \mgrechanik\imagepointssearcher\ImageResult($searcher);
+            $imageResult->drawLabels();
+            $imageResult->drawMargins();
+            $imageResult->drawPath($innerPath);
+            $imageResult->save('./images/result.jpg');
+        }
     }
   
 } catch (Exception $e) {
@@ -266,16 +268,6 @@ try {
 ---
 
 ## Настройка  <span id="settings"></span>   
-
-### Настройка Менеджера
-
-При создании менеджера , в его конструкторе можно указать, какой Поисковик использовать, какую Задачу решать, как считать расстояние, как математическую часть работы выполнять.
-
-Пример, указываем Поисковик, как использующий элитных муравьев
-```php
-$finder = new \mgrechanik\aco\elitist\Finder();
-$manager = new Manager(finder : $finder);
-```
 
 ### Настройка Поисковика
 
