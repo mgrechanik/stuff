@@ -97,31 +97,31 @@ $manager->setCities(City ...$cities)
 ```php
 $manager->updateMatrix(int $y, int $x, float|int $value, bool $double = true)
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Например, можем сделать некий участок непроходимым - ```$manager->updateMatrix(1, 0, 1000000);```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- For example we could make some path impassable - ```$manager->updateMatrix(1, 0, 1000000);```
 
-5) **Запуск вычислительного процесса**
+5) **Run the computational process**
 ```php
 $distance = $manager->run(int $iterations = 400)
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- для небольших графов, число итераций можно уменьшить.  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Вернет найденное расстояние или ```null``` если поиск не увенчался успехом
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- for small graphs we could reduce amount of iterations.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- It will return the distance we found or ```null``` when the search gave no result
 
-6) **Получение найденного пути**
+6) **Getting the path we found**
 ```php
 $path = $manager->getInnerPath()
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Найденный путь из номеров нод.   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Все ноды внутри именуются числами от 0 до N-1, где N - кол-во нод.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- The path we found who consists of node's numbers.   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All nodes are internally named as numbers from 0 to N-1, where N is node's amount.  
 
-7) **Получение найденного пути из алиасов**
+7) **Getting aliased path we found**
 ```php
 $path = $manager->getNamedPath()
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Найденный путь из алиасов имен нод, если вы их задавили.   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- The path we found which consists of node's name aliases, if we set them.   
 
-### Примеры
+### Examples
 
-#### Решаем Задачу Коммивояжера классическим ACO
+#### Solving "Travelling salesman problem" with Classic ACO
 ```php
 use mgrechanik\aco\Manager;
 
@@ -137,7 +137,7 @@ $distance = $manager->run(20);
 var_dump('Distance=' . $distance);
 var_dump($manager->getInnerPath())
 ```
-Получим:
+We will get:
 ```php
 Distance=25
 
@@ -151,7 +151,7 @@ Array
 ) 
 ```
 
-#### Решаем задачу "О кратчайшем пути", классическим ACO
+#### Solving "Shortest path problem" with Classic ACO
 
 ```php
 use mgrechanik\aco\Manager;
@@ -173,7 +173,7 @@ $distance = $manager->run(50);
 var_dump('Distance=' . $distance);
 var_dump($manager->getInnerPath())
 ```
-Получим:
+We will get:
 ```php
 Distance=12
 
@@ -186,7 +186,7 @@ Array
 // for comparison, the direct path [0, 3] is closed by big distance and distance of path [0, 1, 3] is 13
 ```
 
-#### Загрузка данных в виде списка городов
+#### Loading data as an array of cities
 ```php
 use mgrechanik\aco\Manager;
 use mgrechanik\aco\City;
@@ -197,7 +197,7 @@ $manager->setCities(...$cities);
 ```
 
 
-#### Загрузка данных в виде матрицы смежности
+#### Loading data as an adjacency matrix
 ```php
 use mgrechanik\aco\Manager;
 
@@ -211,7 +211,7 @@ $manager = new Manager();
 $manager->setMatrix($matrix);
 ```
 
-#### Используем поисковик c элитными муравьями
+#### Using the Elitist Finder
 
 ```php
 $finder = new \mgrechanik\aco\elitist\Finder();
@@ -219,7 +219,7 @@ $manager = new Manager(finder : $finder);
 //...
 ```
 
-#### Смотрим историю работы
+#### Have a look at the history of our work - best solutions we had been finding
 ```php
 use mgrechanik\aco\Manager;
 
@@ -236,11 +236,11 @@ $manager->run();
 var_dump($finder->getHistory());
 ```
 
-#### Грузим список городов из картинки
+#### Loadind a list of cities from an image file
 
-При использовании [данной библиотеки](https://github.com/mgrechanik/image-points-searcher "Библиотека поиска точек на изображении") мы можем загрузить список городов из картинки, и результат поиска отобразить на результирующей картинке. Визуально будут картинки как на [Demo](#demo "картинки на демо, получены этим способом").   
+With the use of [this library](https://github.com/mgrechanik/image-points-searcher  "library to search for points on image") we can load a list of cities from image. And the result of the search could be displayed on the image too. It will look like images on [Demo](#demo "the images we get this way")
 
-Подробнее по подготовке картинки изучайте в описании к той библиотеке, но вкратце - на белом холсте отметьте кружочками диаметром 10 px, вершины графа, и используйте в коде ниже эту картинку.
+Read docs of that library for more information how to prepare images but briefly it is this: On white canvas draw points of 10 px diameter (they are vertices of the graph) and use this image with the code below 
 
 ```php
 use mgrechanik\aco\Manager;
@@ -279,31 +279,31 @@ try {
 
 ## Settings  <span id="settings"></span>   
 
-### Настройка Поисковика
+### Finder settings
 
-Основной настраиваемый обьект - Это поисковик.
-Получаем его:
+The base object we tune is Finder.  
+Lets get it:
 ```php
 $manager = new Manager();
 $finder = $manager->getFinder();
-// Настраиваем
+// Settings
 //$finder->set...
 // ...
 //$manager->run();
 ```
 
-**Доступные настройки:**
+**Settings available:**
 
-- Установим величину расстояния, при которой участок между двумя узлами считается непроходимым  
+- Set the distance value which makes path between two nodes impassable  
 ```->setClosedPathValue(int $value)```
 
-- Установим число муравьев  
+- Set amount of ants  
 ```->setM(int $m)```
 
-- Установим число муравьев как процент от числа нод. Используется по умолчанию (=40%)  
+- Set amount of ants in percents relatively to amount of nodes. Default behavior (=40%)  
 ```->setMPercent(int $mPercent)```
 
-- Устанавливаем коэффициенты для формулы
+- Set the coefficients for formulas
 ```php
 ->setAlpha(float $alpha);
 ->setBeta(float $beta);
@@ -312,16 +312,16 @@ $finder = $manager->getFinder();
 ->setQ(int $q);
 ```
 
-- Установить стратегию выполнения математических задач  
+- Set the strategy to mo mathematic work  
 ```->setMathematics(MathematicsInterface $mathematics)```
 
-- Установить текущую выполняемую задачу. TSP, SPP или др.  
+- Set the task we are solving. Say TSP, SPP or other.  
 ```->setTask(Task $task)```
 
-- Установим число элитных муравьев (для поисковика с элитными муравьями)   
+- Set an amount of elitist ants (when we use Elitist Finder)   
 ```->setSigma(int $sigma)```
 
-- Установим число элитных муравьев как процент от числа регулярных муравьев. Используется по умолчанию (=50%)   (для поисковика с элитными муравьями)  
+- Set an amount of elitist ants in percents relatively to amount of regular ants. Default behavior (=50%) (when we use Elitist Finder)  
 ```->setSigmaPercent(int $sPercent)```
 
 ---
