@@ -20,15 +20,15 @@
 
 The Ant colony optimization is a probabilistic technique for solving computational problems which can be reduced to finding good paths through graphs (from Wikipedia).
 
-The task we are solving could be either "Travelling salesman problem" or "Shortest path problem", or Constrained Shortest Path First, etc.
-Two first tasks are solved within this library.
+The task we are solving could be either "Travelling salesman problem" or "Shortest path problem", or Constrained Shortest Path First, etc.  
+The two first tasks are solved within this library.
 
-There are a lot of strategies and variations of Classic ACO algorithm.
+There are a lot of strategies and variations of Classic ACO algorithm.  
 This library out of the box implements Classic ACO and ACO with elitist ants.
 
-The library could be easily extended for you to implement your ACO variations and to solve the tasks you need.
+The library could be easily extended so you can implement your ACO variations and to solve the tasks you need.
 
-Initial data about the graph comes either from adjacency matrix or from a list of nodes (cities, vertices, etc) with their X and Y coordinates.
+An initial data about the graph comes either from adjacency matrix or from a list of nodes (cities, vertices, etc) with their X and Y coordinates.
 
 The work of library had been tested with [TSPLIB95](#tsplib95) data sets, so we could check it's [performance](#performance) and efficiency. 
 
