@@ -123,7 +123,7 @@ $matrix = [
             [ 8, 0, 9, 5 ],
             [ 4, 9, 0, 8 ],
             [11, 5, 8, 0 ]
-        ];
+          ];
 $manager->setMatrix($matrix);
 $distance = $manager->run(20);
 var_dump('Distance=' . $distance);
@@ -156,7 +156,7 @@ $matrix = [
             [ 8 , 0, 9, 5  ],
             [ 4 , 9, 0, 8  ],
             [100, 5, 8, 0  ]
-        ];
+          ];
 $manager->setMatrix($matrix);   
 $finder = $manager->getFinder();
 // increase amount of ants to 6
@@ -198,7 +198,7 @@ $matrix = [
             [ 8, 0, 9, 5 ],
             [ 4, 9, 0, 8 ] ,
             [11, 5, 8, 0 ]
-        ];
+          ];
 $manager = new Manager();
 $manager->setMatrix($matrix);
 ```
@@ -220,7 +220,7 @@ $matrix = [
             [ 8, 0, 9, 5 ],
             [ 4, 9, 0, 8 ] ,
             [11, 5, 8, 0 ]
-        ];
+          ];
 $manager = new Manager();
 $finder = $manager->getFinder();
 $manager->setMatrix($matrix);
@@ -247,7 +247,7 @@ try {
     if ($found > 1) {
         $points = $imageSearcher->getPoints();
         $cities = [];
-        foreach ($points as $key => $point) {
+        foreach ($points as $point) {
             $cities[] = new City($point['x'], $point['y']);
         }    
         $manager = new Manager();
@@ -338,7 +338,7 @@ $distance = $manager->run(300);
 var_dump('Distance=' . $distance);
 var_dump($finder->getHistory());
 ```
-Получим вывод:
+Получили вывод:
 ```php
 Distance=7542
 
@@ -385,7 +385,7 @@ $manager = new Manager();
 $manager->setCities(...$cities);
 ```
 
-### Подсключение данных в виде матрицы смежности
+### Подключение данных в виде матрицы смежности
 
 Пример файла с этим форматом - **bays29.tsp** .
 
@@ -411,9 +411,9 @@ $manager->setMatrix($matrix, 1);
 #### ```Nodes``` - Ноды, или узлы, или вершины графа. Или города. Муравьи путешествуют между ними
 
 #### ```Adjacency Matrix``` - Матрица смежности, задает расстояния между узлами графа. Это базовая структура, с которой начинает работать алгоритм.
-Если граф представлен как ```Города``` с координатами, то эта информация сначала переводится в матрицу смежности.
+Если граф представлен как ```Города``` с координатами, то эта информация сначала переводится в матрицу смежности
 
-#### ```Finder``` - Поисковик, реализующий Классическую разновидность ACO алгоритма
+#### ```Classic Finder``` - Поисковик, реализующий Классическую разновидность ACO алгоритма
 
 #### ```Elitist Finder``` - Поисковик, реализующий алгоритм ACO с использованием элитных муравьев
 
