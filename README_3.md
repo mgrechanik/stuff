@@ -2,7 +2,7 @@
 
 [Русская версия](docs/README_ru.md)
 
-## Содержание
+## Table of contents
 
 * [Introdution](#introducion)
 * [Demo](#demo)
@@ -18,22 +18,21 @@
 
 ## Introdution <span id="introducion"></span>
 
-Муравьиный алгоритм (ACO) позволяет решать вычислительные задачи способом нахождения хороших путей на графе.
+Ant colony optimization is a probabilistic technique for solving computational problems which can be reduced to finding good paths through graphs (from Wikipedia).
 
-Решаемая задача может быть как "Задачей коммивояжера", так и "О кратчайшем пути", или путем с некими ограничениями (Constrained Shortest Path First).  
-Первые две задачи решены в данной библиотеке.
+The task we are solving could be either "Travelling salesman problem" or "Shortest path problem", or Constrained Shortest Path First, etc.
+Two first tasks are solved within this library.
 
-Существует множество стратегий и вариаций классического ACO алгоритма.  
-Библиотека предоставляет реализацию Классического ACO и вариант с использованием Элитных муравьев.
+There are a lot of strategies and variations of Classic ACO algorithm.
+This library out of the box implements Classic ACO and ACO with elitist ants.
 
-Библиотека гибко расширяется и позволяет вам создать свои алгоритмы из мира ACO, и решать свои задачи.
+The library could be easily extended for you to implement your ACO variations and to solve the tasks you need.
 
-Исходные данные поступают и в виде матрицы смежности и в виде списка нод (городов, узлов, вершин) с X и Y координатами.
+Initial data about the graph comes either from adjacency matrix or from a list of nodes (cities, vertices, etc) with their X and Y coordinates.
 
-Работа библиотеки протестирована на наборах данных [TSPLIB95](#tsplib95), для проверки эффективности и [производительности](#performance).
+The work of library had been tested with [TSPLIB95](#tsplib95) data sets, so we could check it's [performance](#performance) and efficiency. 
 
-Кол-во муравьев, все коэффициенты и параматры, [настраиваются](#settings).
-
+Amount of ants, all coefficients and parameters could be [changed](#settings) to your need.
 
 ---
 
@@ -72,29 +71,29 @@ to the require section of your `composer.json`.
 
 ## How to use  <span id="use"></span> 
 
-### Базовое API
+### Basic API
 
-1) **Создание Менеджера с нужными зависимостями**
+1) **Creating a Manager with dependencies we need**
 ```php
 Manager::__construct(DistanceInterface $distanceStrategy = null, AFinder $finder = null, 
                      MathematicsInterface $mathematics = null, Task $task = null);
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- По умолчанию **Поисковик** будет устанавливаться в Классический ACO, а решаемая **Задача** - в Задачу Коммивояжера
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- By default **Finder** will be Classic one, and the **Task** will be Travelling salesman problem
 
-2) **Загрузка данных в виде матрицы смежности**
+2) **Loading data from adjacency matrix**
 ```php
 $manager->setMatrix(array $matrix, int $nameStart = 0)
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- $nameStart - с какого номера именовать алиас имени ноды, для их внешнего имени-алиаса
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- $nameStart - from which number start naming aliases of nodes
 
-3) **Загрузка данных в виде списка городов**
+3) **Loading data from an array of cities**
 ```php
 $manager->setCities(City ...$cities)
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Данный список городов будет преобразован в матрицу смежности, расстояния вычислены по указанной Менеджеру стратегии.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Если у города задано свойство ```name``` - оно станет его алиасом имени
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- This array of cities will be transformed to adjacency matrix. Distances will be calculated according to strategy we set to a Manager.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- If city has a ```name``` property it will become it's name alias
 
-4) **Изменение матрицы смежности**
+4) **Changing of adjacency matrix**
 ```php
 $manager->updateMatrix(int $y, int $x, float|int $value, bool $double = true)
 ```
@@ -430,26 +429,26 @@ When graph is loaded like ```Cities``` with their coordinated, this information 
 
 #### ```Task``` - Task we are solving on graph. For example it could be  ```"Travelling salesman problem"```. or ```"Shortest path problem"```. Or other.
 
-#### ```Manager``` - Менеджер, задача которого, сформировать Матрицу смежности, и передать ```Поисковику``` выполнение выбранной ```Задачи```.
+#### ```Manager``` -  Manager which task is to form adjacency matrix , give it to ```Finder``` to solve ```Task```.
 
-#### ```Iteration``` - Итерация, во время которой, все муравьи находят по одному пути и оставляют феромоны. Количество итераций задаем сами
+#### ```Iteration``` - Iteration during which all ants find one path and put pheromones on it. We set amount of iterations
 
-#### ```Pheromon``` - Феромон, то вещество, которое муравьи оставляют на найденных путях
+#### ```Pheromon``` - is the instance ants leave on paths
 
-#### ```m``` - Количество муравьев
+#### ```m``` - Amount of ants
 
-#### ```mPercent``` - Количество муравьев в процентах относительно кол-ва узлов графа
+#### ```mPercent``` - Amount of ants in percents relatively to amount of nodes
 
-#### ```sigma``` - Количество элитных муравьев, если используем соответствующий алгоритм
+#### ```sigma``` - Amount of elitist ants, if we use corresponding algorithm
 
-#### ```sigmaPercent``` - Количество элитных муравьев в процентах относительно кол-ва регулярных муравьев
+#### ```sigmaPercent``` - Amount of elitist ants in percents relatively to amount of regular ants
 
-#### ```alpha``` - коэффициент влияния обьема феромонов на выбор пути
+#### ```alpha``` - Coefficient to control the influence of pheromone amount
 
-#### ```beta``` - коэффициент влияния привлекательности пути
+#### ```beta``` - Coefficient to control the influence of desirability of path
 
-#### ```p``` - коэффициент испарения феромонов после каждой итерации
+#### ```p``` - Evaporation coefficient
 
-#### ```c``` - стартовое кол-во феромонов на всех путях
+#### ```c``` - Starting amount of pheromones on paths
 
-#### ```Q``` - Константа, участвующая в вычислении, сколько феромонов муравей оставляет на найденном пути
+#### ```Q``` - The constance used to calculate how many pheromones an ant puts on the path it found
