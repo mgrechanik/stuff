@@ -425,28 +425,28 @@ When graph is loaded like ```Cities``` with their coordinated, this information 
 
 #### ```Ant``` - ant, working unit, who move through the graph searching for the paths
 
-#### ```Task``` - The task we are solving on the graph. For example it could be  ```"Travelling salesman problem"```. or ```"Shortest path problem"```. Or other.
+#### ```Task``` - The task we are solving on the graph. For example it could be  ```"Travelling salesman problem"``` or ```"Shortest path problem"```. Or other.
 
 #### ```Manager``` -  The manager which task is to form adjacency matrix , give it to ```Finder``` to solve ```Task```.
 
-#### ```Iteration``` - The iteration during which all ants find one path and put pheromones on it. We set amount of iterations
+#### ```Iteration``` - The iteration during which all ants find one path and put pheromones on it. We set amount of iterations themselves.
 
 #### ```Pheromon``` - is the instance ants leave on paths
 
 #### ```m``` - Amount of ants
 
-#### ```mPercent``` - Amount of ants in percents relatively to amount of nodes
+#### ```mPercent``` - Amount of ants in percents relatively to the amount of nodes
 
 #### ```sigma``` - Amount of elitist ants, if we use corresponding algorithm
 
-#### ```sigmaPercent``` - Amount of elitist ants in percents relatively to amount of regular ants
+#### ```sigmaPercent``` - Amount of elitist ants in percents relatively to the amount of regular ants
 
-#### ```alpha``` - Coefficient to control the influence of pheromone amount
+#### ```alpha``` - The coefficient to control the influence of pheromone amount
 
-#### ```beta``` - Coefficient to control the influence of desirability of path
+#### ```beta``` - The coefficient to control the influence of desirability of path
 
-#### ```p``` - Evaporation coefficient
+#### ```p``` - The evaporation coefficient
 
-#### ```c``` - Starting amount of pheromones on paths
+#### ```c``` - The starting amount of pheromones on paths
 
-#### ```Q``` - The constance used to calculate how many pheromones an ant puts on the path it found
+#### ```Q``` - The constant used to calculate how many pheromones an ant puts on the path it found
