@@ -28,7 +28,7 @@ This library out of the box implements Classic ACO and ACO with elitist ants.
 
 The library could be easily extended so you can implement your ACO variations and to solve the tasks you need.
 
-An initial data about the graph comes either from adjacency matrix or from a list of nodes (cities, vertices, etc) with their X and Y coordinates.
+The initial data about the graph comes either from adjacency matrix or from a list of nodes (cities, vertices, etc) with their X and Y coordinates.
 
 The work of library had been tested with [TSPLIB95](#tsplib95) data sets, so we could check it's [performance](#performance) and efficiency. 
 
@@ -73,27 +73,27 @@ to the require section of your `composer.json`.
 
 ### Basic API
 
-1) **Creating a Manager with dependencies we need**
+1) **Creating a Manager with the dependencies we need**
 ```php
 Manager::__construct(DistanceInterface $distanceStrategy = null, AFinder $finder = null, 
                      MathematicsInterface $mathematics = null, Task $task = null);
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- By default **Finder** will be Classic one, and the **Task** will be Travelling salesman problem
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- By default **Finder** will be Classic one, and the **Task** will be the Travelling salesman problem
 
-2) **Loading data from adjacency matrix**
+2) **Loading data from an adjacency matrix**
 ```php
 $manager->setMatrix(array $matrix, int $nameStart = 0)
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- $nameStart - from which number start naming aliases of nodes
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- ```$nameStart``` - from which number start naming aliases of nodes
 
 3) **Loading data from an array of cities**
 ```php
 $manager->setCities(City ...$cities)
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- This array of cities will be transformed to adjacency matrix. Distances will be calculated according to strategy we set to a Manager.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- This array of cities will be transformed to adjacency matrix. Distances will be calculated according to the strategy we set to a Manager.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- If city has a ```name``` property it will become it's name alias
 
-4) **Changing of adjacency matrix**
+4) **Changing of the adjacency matrix**
 ```php
 $manager->updateMatrix(int $y, int $x, float|int $value, bool $double = true)
 ```
@@ -238,7 +238,7 @@ var_dump($finder->getHistory());
 
 #### Loadind a list of cities from an image file
 
-With the use of [this library](https://github.com/mgrechanik/image-points-searcher  "library to search for points on image") we can load a list of cities from image. And the result of the search could be displayed on the image too. It will look like images on [Demo](#demo "the images we get this way")
+With the use of [this library](https://github.com/mgrechanik/image-points-searcher  "library to search for points on image") we can load a list of cities from the image. And the result of the search could be displayed on the image too. It will look like images on [Demo](#demo "the images we get this way").
 
 Read docs of that library for more information how to prepare images but briefly it is this: On white canvas draw points of 10 px diameter (they are vertices of the graph) and use this image with the code below 
 
@@ -247,7 +247,6 @@ use mgrechanik\aco\Manager;
 use mgrechanik\aco\City;
 
 try {
-	
     $imageSearcher = new \mgrechanik\imagepointssearcher\Searcher(
         './images/your_image.jpg',
     );
@@ -281,7 +280,7 @@ try {
 
 ### Finder settings
 
-The base object we tune is Finder.  
+The base object we tune is the Finder.  
 Lets get it:
 ```php
 $manager = new Manager();
@@ -294,7 +293,7 @@ $finder = $manager->getFinder();
 
 **Settings available:**
 
-- Set the distance value which makes path between two nodes impassable  
+- Set the distance value which makes the path between two nodes impassable  
 ```->setClosedPathValue(int $value)```
 
 - Set amount of ants  
@@ -312,7 +311,7 @@ $finder = $manager->getFinder();
 ->setQ(int $q);
 ```
 
-- Set the strategy to mo mathematic work  
+- Set the strategy to do the mathematical work  
 ```->setMathematics(MathematicsInterface $mathematics)```
 
 - Set the task we are solving. Say TSP, SPP or other.  
@@ -328,12 +327,12 @@ $finder = $manager->getFinder();
 
 ## Performance  <span id="performance"></span>   
 
-> First of all turn off XDebug or it's analogies, since they could significantly affect the time algorithm works
+> First of all turn off XDebug or it's analogies, since they could significantly affect the time the algorithm works
 
 This ACO algorithm finds [good](#demo) paths on a graph. And sometimes even best paths. 
 
-Lets take, for example, task ```berlin52.tsp``` from [TSPLIB95](#tsplib95) library, which has 52 nodes.  
-Solve this task we the next code:
+Lets take, for example, the ```berlin52.tsp``` task from [TSPLIB95](#tsplib95) library, which has 52 nodes.  
+Solving this task with the next code:
 ```php
 $cities = TspLibLoader::loadCitiesFromEuc2dFile(__DIR__ . '/images/data/berlin52.tsp');
 $finder = new \mgrechanik\aco\elitist\Finder();
@@ -372,15 +371,15 @@ An Algorithm is probabilistic, ants travel differently each new search. A lot de
 
 ## TSPLIB95 <span id="tsplib95"></span>
 
-The [TSPLIB95](http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/), library ships with a lot of ```Travelling salesman problems``` - initial data and solutions - best results ever found for these tasks ([paths](#tsplib95 "The best paths are located in corresponding name.opt.tour file") and [distances](http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/STSP.html "Here you can see best distances ever found")).
+The [TSPLIB95](http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/) library ships with a lot of ```Travelling salesman problems``` - initial data and solutions - best results ever found for these tasks ([paths](#tsplib95 "The best paths are located in corresponding name.opt.tour file") and [distances](http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/STSP.html "Here you can see best distances ever found")).
 
-The library is valuable that with it's data we coul test efficiency of our algorithms, coefficients and parameters.
+The library is valuable that with it's data we could test the efficiency of our algorithms, coefficients and parameters.
 
-The library gives a lot of different initial data formats. Out of the box we support two of them.
+The library consists of a lot of different initial data formats. Out of the box we support two of them.
 
 ### Loading data as a set of X and Y coordinates of cities. Distance is euclidean.
 
-Example of the file with this format - **berlin52.tsp** .
+Example of the file with this format - **berlin52.tsp** .  
 Loading the list of nodes (cities) and transfer it to Manager:
 
 ```php
@@ -395,8 +394,7 @@ $manager->setCities(...$cities);
 
 ### Loading data as an adjacency matrix
 
-Example of the file with this format - **bays29.tsp** .
-
+Example of the file with this format - **bays29.tsp** .  
 Loading the adjacency matrix and transfer it to Manager:
 
 ```php
@@ -425,13 +423,13 @@ When graph is loaded like ```Cities``` with their coordinated, this information 
 
 #### ```Elitist Finder``` - Finder who implements ACO algorithm when we use elitist ants
 
-#### ```Ant``` - ant, working unit, who move through graph searching for paths
+#### ```Ant``` - ant, working unit, who move through the graph searching for the paths
 
-#### ```Task``` - Task we are solving on graph. For example it could be  ```"Travelling salesman problem"```. or ```"Shortest path problem"```. Or other.
+#### ```Task``` - The task we are solving on the graph. For example it could be  ```"Travelling salesman problem"```. or ```"Shortest path problem"```. Or other.
 
-#### ```Manager``` -  Manager which task is to form adjacency matrix , give it to ```Finder``` to solve ```Task```.
+#### ```Manager``` -  The manager which task is to form adjacency matrix , give it to ```Finder``` to solve ```Task```.
 
-#### ```Iteration``` - Iteration during which all ants find one path and put pheromones on it. We set amount of iterations
+#### ```Iteration``` - The iteration during which all ants find one path and put pheromones on it. We set amount of iterations
 
 #### ```Pheromon``` - is the instance ants leave on paths
 

@@ -83,7 +83,7 @@ Manager::__construct(DistanceInterface $distanceStrategy = null, AFinder $finder
 ```php
 $manager->setMatrix(array $matrix, int $nameStart = 0)
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- $nameStart - с какого номера именовать алиас имени ноды, для их внешнего имени-алиаса
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- ```$nameStart``` - с какого номера именовать алиас имени ноды, для их внешнего имени-алиаса
 
 3) **Загрузка данных в виде списка городов**
 ```php
@@ -218,7 +218,7 @@ $manager = new Manager(finder : $finder);
 //...
 ```
 
-#### Смотрим историю работы
+#### Смотрим историю работы, состоит из лучших путей, которые мы находили
 ```php
 use mgrechanik\aco\Manager;
 
@@ -246,7 +246,6 @@ use mgrechanik\aco\Manager;
 use mgrechanik\aco\City;
 
 try {
-	
     $imageSearcher = new \mgrechanik\imagepointssearcher\Searcher(
         './images/your_image.jpg',
     );
