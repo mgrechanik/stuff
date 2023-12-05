@@ -72,7 +72,7 @@ composer require --prefer-dist mgrechanik/yii2-categories-and-tags
 
 ### Базовое API
 
-1) Создание Менеджера с нужными зависимостями
+1) **Создание Менеджера с нужными зависимостями**
 ```php
 Manager::__construct(DistanceInterface $distanceStrategy = null, AFinder $finder = null, 
                      MathematicsInterface $mathematics = null, Task $task = null);
@@ -85,24 +85,24 @@ $manager->setMatrix(array $matrix, int $nameStart = 0)
 ```
 - $nameStart - с какого номера именовать ноды, для их внешнего имени-алиаса
 
-3) Загрузка данных в виде списка городов
+3) **Загрузка данных в виде списка городов**
 ```php
 $manager->setCities(City ...$cities)
 ```
-4) Изменение матрицы смежности
+4) **Изменение матрицы смежности**
 ```php
 $manager->updateMatrix(int $y, int $x, float|int $value, bool $double = true)
 ```
 - Например можем сделать некий участок непроходимым - ```$manager->updateMatrix(1, 0, 1000000);```
 
-5) Запуск вычислительного процесса
+5) **Запуск вычислительного процесса**
 ```php
 $distance = $manager->run(int $iterations = 400)
 ```
 - для небольших графов, число итераций можно уменьшить
 - Вернет найденное расстояние или ```null``` если поиск не увенчался успехом
 
-6) Получение найденного пути
+6) **Получение найденного пути**
 ```php
 $path = $manager->getInnerPath()
 ```
