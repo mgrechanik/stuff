@@ -328,12 +328,12 @@ $finder = $manager->getFinder();
 
 ## Performance  <span id="performance"></span>   
 
-> Прежде всего отключите XDebug или аналоги, т.к. они могут на порядок влиять на скорость работы
+> First of all turn off XDebug or it's analogies, since they could significantly affect the time algorithm works
 
-Данный ACO алгоритм находит [хорошие](#demo) пути на графе. И даже лучшие. 
+This ACO algorithm finds [good](#demo) paths on a graph. And sometimes even best paths. 
 
-Для примера возьмем задачу ```berlin52.tsp``` из библиотеки [TSPLIB95](#tsplib95), где 52 узла у графа.
-Решаем задачу кодом ниже:
+Lets take, for example, task ```berlin52.tsp``` from [TSPLIB95](#tsplib95) library, which has 52 nodes.  
+Solve this task we the next code:
 ```php
 $cities = TspLibLoader::loadCitiesFromEuc2dFile(__DIR__ . '/images/data/berlin52.tsp');
 $finder = new \mgrechanik\aco\elitist\Finder();
@@ -346,7 +346,7 @@ $distance = $manager->run(300);
 var_dump('Distance=' . $distance);
 var_dump($finder->getHistory());
 ```
-Получили вывод:
+We will see:
 ```php
 Distance=7542
 
@@ -361,27 +361,27 @@ Distance=7542
     )
 ```
 
-Данный код, работая на офисном компьютере, за менее чем 2 секунды, смог найти самый лучший путь из известных.
+This code, working on an office computer, found the best path ever known for less than 2 seconds.
 
-Здесь мы использовали поисковик на основе алгоритма с использования элитных муравьев. Он на практике дает лучшие результаты, чем классический.
+We used here Elitist ACO algorithm since in practice it gives better results than Classic one. 
 
-Алгоритм вероятностный, каждый раз муравьи будут путешествовать по другому. И очень многое зависит от кол-ва нод, муравьев, настройки всех коэффициентов и параметров, участвующих в формулах.
+An Algorithm is probabilistic, ants travel differently each new search. A lot depends upon amount of nodes, amount of ants, all coefficients and parameters used with formulas.
 
 
 ---
 
 ## TSPLIB95 <span id="tsplib95"></span>
 
-Библиотека [TSPLIB95](http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/), содержит множество ```Задач коммивояжера``` - исходные данные и решения - лучшие рузультаты, которые были когда либо найдены для этих задач ([пути](#tsplib95 "Пути располагаются в соответствующих файлах имя.opt.tour") и [расстояния](http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/STSP.html "Тут можно смотреть лучшие найденные расстояния")).
+The [TSPLIB95](http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/), library ships with a lot of ```Travelling salesman problems``` - initial data and solutions - best results ever found for these tasks ([paths](#tsplib95 "The best paths are located in corresponding name.opt.tour file") and [distances](http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/STSP.html "Here you can see best distances ever found")).
 
-Библиотека ценна тем, что на ее данных можно протестировать эффективность наших алгоритмов, коэффициентов и параметров.
+The library is valuable that with it's data we coul test efficiency of our algorithms, coefficients and parameters.
 
-Библиотека предоставляет множество разных форматов исходных данных. Мы из коробки поддерживаем два из них.
+The library gives a lot of different initial data formats. Out of the box we support two of them.
 
-### Подключение данных в виде списка X и Y координат. Расстояние Эвклидовое.
+### Loading data as a set of X and Y coordinates of cities. Distance is euclidean.
 
-Пример файла с этим форматом - **berlin52.tsp** .
-Загружаем из него список нод (городов) и передаем менеджеру:
+Example of the file with this format - **berlin52.tsp** .
+Loading the list of nodes (cities) and transfer it to Manager:
 
 ```php
 use mgrechanik\aco\TspLibLoader;
@@ -393,11 +393,11 @@ $manager = new Manager();
 $manager->setCities(...$cities);
 ```
 
-### Подключение данных в виде матрицы смежности
+### Loading data as an adjacency matrix
 
-Пример файла с этим форматом - **bays29.tsp** .
+Example of the file with this format - **bays29.tsp** .
 
-Загружаем из него матрицу смежности и передаем менеджеру:
+Loading the adjacency matrix and transfer it to Manager:
 
 ```php
 use mgrechanik\aco\TspLibLoader;

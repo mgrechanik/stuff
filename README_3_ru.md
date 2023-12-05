@@ -331,7 +331,7 @@ $finder = $manager->getFinder();
 
 Данный ACO алгоритм находит [хорошие](#demo) пути на графе. И даже лучшие. 
 
-Для примера возьмем задачу ```berlin52.tsp``` из библиотеки [TSPLIB95](#tsplib95), где 52 узла у графа.
+Для примера возьмем задачу ```berlin52.tsp``` из библиотеки [TSPLIB95](#tsplib95), где 52 узла у графа.  
 Решаем задачу кодом ниже:
 ```php
 $cities = TspLibLoader::loadCitiesFromEuc2dFile(__DIR__ . '/images/data/berlin52.tsp');
