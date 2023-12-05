@@ -77,7 +77,7 @@ composer require --prefer-dist mgrechanik/yii2-categories-and-tags
 Manager::__construct(DistanceInterface $distanceStrategy = null, AFinder $finder = null, 
                      MathematicsInterface $mathematics = null, Task $task = null);
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- По умолчанию Поисковик будет устанавливаться в Классический ACO, а решаемая Задача - в Задачу Коммивояжера
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- По умолчанию **Поисковик** будет устанавливаться в Классический ACO, а решаемая **Задача** - в Задачу Коммивояжера
 
 2) **Загрузка данных в виде матрицы смежности**
 ```php
@@ -89,18 +89,19 @@ $manager->setMatrix(array $matrix, int $nameStart = 0)
 ```php
 $manager->setCities(City ...$cities)
 ```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Данный список городов будет преобразован в матрицу смежности, расстояния вычислены по указанной менеджеру стратегии
 
 4) **Изменение матрицы смежности**
 ```php
 $manager->updateMatrix(int $y, int $x, float|int $value, bool $double = true)
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Например можем сделать некий участок непроходимым - ```$manager->updateMatrix(1, 0, 1000000);```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Например, можем сделать некий участок непроходимым - ```$manager->updateMatrix(1, 0, 1000000);```
 
 5) **Запуск вычислительного процесса**
 ```php
 $distance = $manager->run(int $iterations = 400)
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- для небольших графов, число итераций можно уменьшить  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- для небольших графов, число итераций можно уменьшить.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Вернет найденное расстояние или ```null``` если поиск не увенчался успехом
 
 6) **Получение найденного пути**
@@ -148,7 +149,7 @@ Array
 use mgrechanik\aco\Manager;
 use mgrechanik\aco\SppTask;
 
-$task = new SppTask(0,3);
+$task = new SppTask(0, 3);
 $manager = new Manager(task : $task);
 $matrix = [
             [ 0 , 8, 4, 100],
@@ -158,7 +159,7 @@ $matrix = [
         ];
 $manager->setMatrix($matrix);   
 $finder = $manager->getFinder();
-// increase amount of ants to six
+// increase amount of ants to 6
 $finder->setM(6);
 $distance = $manager->run(50);
 var_dump('Distance=' . $distance);
@@ -238,12 +239,12 @@ use mgrechanik\aco\Manager;
 
 try {
 	
-    $searcher = new \mgrechanik\imagepointssearcher\Searcher(
+    $imageSearcher = new \mgrechanik\imagepointssearcher\Searcher(
         './images/your_image.jpg',
     );
-    $found = $searcher->run();    
+    $found = $imageSearcher->run();    
     if ($found > 1) {
-        $points = $searcher->getPoints();
+        $points = $imageSearcher->getPoints();
         $cities = [];
         foreach ($points as $key => $point) {
             $cities[] = new City($point['x'], $point['y']);
@@ -252,7 +253,7 @@ try {
         $manager->setCities(...$cities);
         if ($res = $manager->run()) {
             $innerPath = $manager->getInnerPath();
-            $imageResult = new \mgrechanik\imagepointssearcher\ImageResult($searcher);
+            $imageResult = new \mgrechanik\imagepointssearcher\ImageResult($imageSearcher);
             $imageResult->drawLabels();
             $imageResult->drawMargins();
             $imageResult->drawPath($innerPath);
