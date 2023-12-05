@@ -109,7 +109,7 @@ $distance = $manager->run(int $iterations = 400)
 $path = $manager->getInnerPath()
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Найденный путь из номеров нод.   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Все ноды внутри именуются числами от 0 до N, где N - кол-во нод.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Все ноды внутри именуются числами от 0 до N-1, где N - кол-во нод.  
 
 ### Примеры
 
@@ -203,7 +203,7 @@ $manager = new Manager();
 $manager->setMatrix($matrix);
 ```
 
-#### Используем элитный поисковик
+#### Используем поисковик c элитными муравьями
 
 ```php
 $finder = new \mgrechanik\aco\elitist\Finder();
@@ -364,7 +364,7 @@ Distance=7542
 
 ## TSPLIB95 <span id="tsplib95"></span>
 
-Библиотека [TSPLIB95](http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/tsp/), содержит множество ```Задач коммивояжера``` - исходные данные и решения - лучшие рузультаты, которые были когда либо найдены для этих задач ([пути](#tsplib95 "Пути располагаются в соответствующих файлах имя.opt.tour") и [расстояния](http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/STSP.html "Тут можно смотреть лучшие найденные расстояния")).
+Библиотека [TSPLIB95](http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/), содержит множество ```Задач коммивояжера``` - исходные данные и решения - лучшие рузультаты, которые были когда либо найдены для этих задач ([пути](#tsplib95 "Пути располагаются в соответствующих файлах имя.opt.tour") и [расстояния](http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/STSP.html "Тут можно смотреть лучшие найденные расстояния")).
 
 Библиотека ценна тем, что на ее данных можно протестировать эффективность наших алгоритмов, коэффициентов и параметров.
 
